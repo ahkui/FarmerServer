@@ -14,6 +14,16 @@ Route::any('adminer', '\Miroc\LaravelAdminer\AdminerAutologinController@index')-
 
 Auth::routes();
 
+Route::get('{location}', function () {
+    $location = Geocoder::geocode(request()->location)->get();
+    dump($location);
+    dump($location->count());
+    foreach ($location as $item) {
+        $coordinates = $item->getCoordinates();
+        dump($coordinates->getLatitude() .' '. $coordinates->getLongitude());
+    }
+});
+
 Route::get('/', function () {
     return view('welcome');
 });

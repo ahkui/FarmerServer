@@ -12,7 +12,8 @@
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
-        "miroc/laravel-adminer": "^4.3"
+        "miroc/laravel-adminer": "^4.3",
+        "toin0u/geocoder-laravel": "^4.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::any('adminer', '\Miroc\LaravelAdminer\AdminerAutologinController@index')->middleware('auth');
+Route::any('adminer', '\Miroc\LaravelAdminer\AdminerAutologinController@index');
 
 Auth::routes();
 

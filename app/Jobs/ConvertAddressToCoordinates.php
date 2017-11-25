@@ -41,7 +41,7 @@ class ConvertAddressToCoordinates implements ShouldQueue
                     $data = collect();
                     $temp = collect();
                     foreach ($location->getAdminLevels() as $key => $value) {
-                        $temp->put($key,$value->getName());
+                        $temp->put($key,$value?$value->getName():'');
                     }
                     $data->put('levels',$temp);
                     $temp = collect();
@@ -50,7 +50,7 @@ class ConvertAddressToCoordinates implements ShouldQueue
                     $temp->put('north',$location->getBounds()->getNorth());
                     $temp->put('east',$location->getBounds()->getEast());
                     $data->put('bounds',$temp);
-                    $data->put('country',$location->getCountry()->getName());
+                    $data->put('country',$location->getCountry()?$location->getCountry()->getName(),'');
                     $data->put('address',$location->getFormattedAddress());
                     $data->put('latitude',$location->getCoordinates()->getLatitude());
                     $data->put('longitude',$location->getCoordinates()->getLongitude());
@@ -65,7 +65,7 @@ class ConvertAddressToCoordinates implements ShouldQueue
                     $apikey = GoogleMapsApi::whereApikey($currentApiKey)->first();
                     if($apikey)
                         $apikey->update(['used_count'=>$apikey->used_count+1]);
-                    $item->update(['is_converted'=>true]);
+                    $item->update(['is_converted'=>true,'is_fail'=>false]);
                 }
                 else{
                     $item->update(['is_fail'=>true]);

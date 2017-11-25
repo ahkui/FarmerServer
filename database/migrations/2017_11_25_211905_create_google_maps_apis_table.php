@@ -16,7 +16,7 @@ class CreateGoogleMapsApisTable extends Migration
         Schema::create('google_maps_apis', function (Blueprint $table) {
             $table->increments('id');
             $table->string('apikey');
-            $table->integer('used_count');
+            $table->integer('used_count')->default(0);
             $table->timestamps();
         });
     }

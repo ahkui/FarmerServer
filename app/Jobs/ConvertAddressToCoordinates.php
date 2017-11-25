@@ -35,8 +35,14 @@ class ConvertAddressToCoordinates implements ShouldQueue
     {
         $currentApiKey = config('geocoder.providers.Geocoder\Provider\Chain\Chain.Geocoder\Provider\GoogleMaps\GoogleMaps.1');
         if ($currentApiKey) {
+            $apikey = GoogleMapsApi::whereApikey($currentApiKey)->first();
             foreach (OriginalAddressData::whereIsConverted(false)->whereIsFail(false)->take(50)->get() as $item) {
                 $location = Geocoder::geocode($item->address)->get()->first();
+                if($apikey) $apikey->update(['used_count'=>$apikey->used_count+1]);
+                if (!$location && $item->name) {
+                    $location = Geocoder::geocode($item->name)->get()->first();
+                    if($apikey) $apikey->update(['used_count'=>$apikey->used_count+1]);
+                }
                 if ($location) {
                     $data = collect();
                     $temp = collect();
@@ -62,9 +68,6 @@ class ConvertAddressToCoordinates implements ShouldQueue
                         'latitude'=>$data['latitude'],
                     ],$data->toArray());
                     
-                    $apikey = GoogleMapsApi::whereApikey($currentApiKey)->first();
-                    if($apikey)
-                        $apikey->update(['used_count'=>$apikey->used_count+1]);
                     $item->update(['is_converted'=>true,'is_fail'=>false]);
                 }
                 else{

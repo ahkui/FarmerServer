@@ -12,6 +12,7 @@ class ConvertedAddressData extends Model
      * @var array
      */
     protected $fillable = [
+        'name',
         'levels',
         'bounds',
         'country',

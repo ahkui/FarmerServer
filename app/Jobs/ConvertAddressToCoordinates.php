@@ -50,7 +50,7 @@ class ConvertAddressToCoordinates implements ShouldQueue
                     $temp->put('north',$location->getBounds()->getNorth());
                     $temp->put('east',$location->getBounds()->getEast());
                     $data->put('bounds',$temp);
-                    $data->put('country',$location->getCountry()?$location->getCountry()->getName(),'');
+                    $data->put('country',$location->getCountry()?$location->getCountry()->getName():'');
                     $data->put('address',$location->getFormattedAddress());
                     $data->put('latitude',$location->getCoordinates()->getLatitude());
                     $data->put('longitude',$location->getCoordinates()->getLongitude());

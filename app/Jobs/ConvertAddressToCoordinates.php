@@ -37,12 +37,15 @@ class ConvertAddressToCoordinates implements ShouldQueue
             $address = OriginalAddressData::whereIsConverted(false)->whereIsFail(false)->take(100)->get();
             dump($address->count());
             foreach ($address as $item) {
-                $apikey = GoogleMapsApi::whereApikey(config('geocoder.providers.Geocoder\Provider\Chain\Chain.Geocoder\Provider\GoogleMaps\GoogleMaps.1'))->first();
                 $location = Geocoder::geocode($item->address)->get()->first();
-                if ($location == null && $item->name) 
+                $apikey = GoogleMapsApi::whereApikey(config('geocoder.providers.Geocoder\Provider\Chain\Chain.Geocoder\Provider\GoogleMaps\GoogleMaps.1'))->first();
+                $apikey->update(['used_count'=>$apikey->used_count+1]);
+                if ($location == null && $item->name) {
                     $location = Geocoder::geocode($item->name)->get()->first();
-                if ($location) {
+                    $apikey = GoogleMapsApi::whereApikey(config('geocoder.providers.Geocoder\Provider\Chain\Chain.Geocoder\Provider\GoogleMaps\GoogleMaps.1'))->first();
                     $apikey->update(['used_count'=>$apikey->used_count+1]);
+                }
+                if ($location) {
                     $data = collect();
                     $temp = collect();
                     foreach ($location->getAdminLevels() as $key => $value) {

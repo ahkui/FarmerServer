@@ -34,12 +34,12 @@ class ConvertAddressToCoordinates implements ShouldQueue
     public function handle()
     {
         if (config('geocoder.providers.Geocoder\Provider\Chain\Chain.Geocoder\Provider\GoogleMaps\GoogleMaps.1')) {
-            $address = OriginalAddressData::whereIsConverted(false)->whereIsFail(false)->take(100)->get();
+            $address = OriginalAddressData::whereIsConverted(false)->whereIsFail(false)->take(50)->get();
             dump($address->count());
             if ($address->count() == 0) {
                 foreach (OriginalAddressData::whereIsConverted(false)->whereIsFail(true)->get() as $item) 
                     $item->update(['is_fail'=>true]);
-                $address = OriginalAddressData::whereIsConverted(false)->whereIsFail(false)->take(100)->get();
+                $address = OriginalAddressData::whereIsConverted(false)->whereIsFail(false)->take(50)->get();
             }
             foreach ($address as $item) {
                 $location = Geocoder::geocode($item->address)->get()->first();

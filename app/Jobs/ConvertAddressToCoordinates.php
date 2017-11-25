@@ -37,16 +37,10 @@ class ConvertAddressToCoordinates implements ShouldQueue
             foreach (OriginalAddressData::whereIsConverted(false)->whereIsFail(false)->take(100)->get() as $item) {
                 $apikey = GoogleMapsApi::whereApikey(config('geocoder.providers.Geocoder\Provider\Chain\Chain.Geocoder\Provider\GoogleMaps\GoogleMaps.1'))->first();
                 $location = Geocoder::geocode($item->address)->get()->first();
-                if($apikey) {
-                    $apikey->used_count++;
-                    $apikey->save();
-                }
+                $apikey->used_count++;
                 if (!$location && $item->name) {
                     $location = Geocoder::geocode($item->name)->get()->first();
-                    if($apikey) {
-                        $apikey->used_count++;
-                        $apikey->save();
-                    }
+                    $apikey->used_count++;
                 }
                 if ($location) {
                     $data = collect();
@@ -78,6 +72,7 @@ class ConvertAddressToCoordinates implements ShouldQueue
                 else{
                     $item->update(['is_fail'=>true]);
                 }
+                $apikey->save();
             }
         }
         //*/

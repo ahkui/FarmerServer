@@ -42,7 +42,7 @@ class ConvertAddressToCoordinates implements ShouldQueue
                 if ($location == null && $item->name) 
                     $location = Geocoder::geocode($item->name)->get()->first();
                 if ($location) {
-                    $apikey->used_count++;
+                    $apikey->update(['used_count'=>$apikey->used_count+1]);
                     $data = collect();
                     $temp = collect();
                     foreach ($location->getAdminLevels() as $key => $value) {
@@ -72,7 +72,6 @@ class ConvertAddressToCoordinates implements ShouldQueue
                 else{
                     $item->update(['is_fail'=>true]);
                 }
-                $apikey->save();
             }
         }
         //*/

@@ -33,15 +33,20 @@ class ConvertAddressToCoordinates implements ShouldQueue
      */
     public function handle()
     {
-        $currentApiKey = config('geocoder.providers.Geocoder\Provider\Chain\Chain.Geocoder\Provider\GoogleMaps\GoogleMaps.1');
-        if ($currentApiKey) {
-            $apikey = GoogleMapsApi::whereApikey($currentApiKey)->first();
+        if (config('geocoder.providers.Geocoder\Provider\Chain\Chain.Geocoder\Provider\GoogleMaps\GoogleMaps.1')) {
             foreach (OriginalAddressData::whereIsConverted(false)->whereIsFail(false)->take(100)->get() as $item) {
+                $apikey = GoogleMapsApi::whereApikey(config('geocoder.providers.Geocoder\Provider\Chain\Chain.Geocoder\Provider\GoogleMaps\GoogleMaps.1'))->first();
                 $location = Geocoder::geocode($item->address)->get()->first();
-                if($apikey) $apikey->update(['used_count'=>$apikey->used_count+1]);
+                if($apikey) {
+                    $apikey->used_count++;
+                    $apikey->save();
+                }
                 if (!$location && $item->name) {
                     $location = Geocoder::geocode($item->name)->get()->first();
-                    if($apikey) $apikey->update(['used_count'=>$apikey->used_count+1]);
+                    if($apikey) {
+                        $apikey->used_count++;
+                        $apikey->save();
+                    }
                 }
                 if ($location) {
                     $data = collect();

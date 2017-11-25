@@ -7,9 +7,8 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use App\GoogleMapsApi;
 
-class ResetGoogleMapsApiCount implements ShouldQueue
+class ConvertAddressToCoordinates implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -30,9 +29,6 @@ class ResetGoogleMapsApiCount implements ShouldQueue
      */
     public function handle()
     {
-        foreach (GoogleMapsApi::get() as $item) {
-            dump($item);
-            $item->update(['used_count'=>0]);
-        }
+
     }
 }

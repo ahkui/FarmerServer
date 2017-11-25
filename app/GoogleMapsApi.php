@@ -13,5 +13,14 @@ class GoogleMapsApi extends Model
      */
     public $timestamps = false;
 
-    
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'apikey',
+        'used_count',
+    ];
+
 }

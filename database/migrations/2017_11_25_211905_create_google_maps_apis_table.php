@@ -17,7 +17,6 @@ class CreateGoogleMapsApisTable extends Migration
             $table->increments('id');
             $table->string('apikey');
             $table->integer('used_count')->default(0);
-            $table->timestamps();
         });
     }
 

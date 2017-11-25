@@ -17,7 +17,7 @@ return [
         Chain::class => [
             GoogleMaps::class => [
                 'en-US',
-                env('GOOGLE_MAPS_API_KEY'),
+                ['AIzaSyDgm1gQkdBGlmnW5sykYXwb3nb7Wvm5dcs','qwe','asd','zxc','rty'][rand()%4],
             ],
             GeoPlugin::class  => [],
         ],

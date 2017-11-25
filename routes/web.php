@@ -15,6 +15,7 @@ Route::any('adminer', '\Miroc\LaravelAdminer\AdminerAutologinController@index');
 Auth::routes();
 
 Route::get('{location}', function () {
+    dump(request()->location);
     $location = Geocoder::geocode(request()->location)->get();
     dump($location);
     dump($location->count());
@@ -25,7 +26,13 @@ Route::get('{location}', function () {
 });
 
 Route::get('/', function () {
-    return view('welcome');
+    // dump(config('geocoder.providers.Geocoder\Provider\Chain\Chain.Geocoder\Provider\GoogleMaps\GoogleMaps.1'));
+    dump(Geocoder::geocode('taizhong')->get());
+    // config(['geocoder.providers.Geocoder\Provider\Chain\Chain.Geocoder\Provider\GoogleMaps\GoogleMaps.1' => 'qwe']);
+    dump(config('geocoder.providers.Geocoder\Provider\Chain\Chain.Geocoder\Provider\GoogleMaps\GoogleMaps.1'));
+    dump(Geocoder::geocode('gaoxiong')->get());
+    // return config('geocode');
+    // return view('welcome');
 });
 
 

@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.5.20 on 2017-11-11.
+ * Generated for Laravel 5.5.21 on 2017-11-24.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -375,6 +375,18 @@ namespace Illuminate\Support\Facades {
         public static function getProvider($provider)
         {
             return \Illuminate\Foundation\Application::getProvider($provider);
+        }
+        
+        /**
+         * Get the registered service provider instances if any exist.
+         *
+         * @param \Illuminate\Support\ServiceProvider|string $provider
+         * @return array 
+         * @static 
+         */ 
+        public static function getProviders($provider)
+        {
+            return \Illuminate\Foundation\Application::getProviders($provider);
         }
         
         /**
@@ -12187,6 +12199,176 @@ namespace Illuminate\Support\Facades {
  
 }
 
+namespace Geocoder\Laravel\Facades { 
+
+    class Geocoder {
+        
+        /**
+         * 
+         *
+         * @deprecated Use `get()` instead.
+         * @static 
+         */ 
+        public static function all()
+        {
+            return \Geocoder\Laravel\ProviderAndDumperAggregator::all();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function get()
+        {
+            return \Geocoder\Laravel\ProviderAndDumperAggregator::get();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function dump($dumper)
+        {
+            return \Geocoder\Laravel\ProviderAndDumperAggregator::dump($dumper);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function geocodeQuery($query)
+        {
+            return \Geocoder\Laravel\ProviderAndDumperAggregator::geocodeQuery($query);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function reverseQuery($query)
+        {
+            return \Geocoder\Laravel\ProviderAndDumperAggregator::reverseQuery($query);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getName()
+        {
+            return \Geocoder\Laravel\ProviderAndDumperAggregator::getName();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function geocode($value)
+        {
+            return \Geocoder\Laravel\ProviderAndDumperAggregator::geocode($value);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function reverse($latitude, $longitude)
+        {
+            return \Geocoder\Laravel\ProviderAndDumperAggregator::reverse($latitude, $longitude);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function limit($limit)
+        {
+            return \Geocoder\Laravel\ProviderAndDumperAggregator::limit($limit);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getLimit()
+        {
+            return \Geocoder\Laravel\ProviderAndDumperAggregator::getLimit();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function registerProvider($provider)
+        {
+            return \Geocoder\Laravel\ProviderAndDumperAggregator::registerProvider($provider);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function registerProviders($providers = array())
+        {
+            return \Geocoder\Laravel\ProviderAndDumperAggregator::registerProviders($providers);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function using($name)
+        {
+            return \Geocoder\Laravel\ProviderAndDumperAggregator::using($name);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getProviders()
+        {
+            return \Geocoder\Laravel\ProviderAndDumperAggregator::getProviders();
+        }
+        
+        /**
+         * 
+         *
+         * @deprecated Use `getProviders()` instead.
+         * @static 
+         */ 
+        public static function getProvider()
+        {
+            return \Geocoder\Laravel\ProviderAndDumperAggregator::getProvider();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function registerProvidersFromConfig($providers)
+        {
+            return \Geocoder\Laravel\ProviderAndDumperAggregator::registerProvidersFromConfig($providers);
+        }
+         
+    }
+ 
+}
+
 
 namespace  { 
 
@@ -14299,6 +14481,8 @@ namespace  {
     class Validator extends \Illuminate\Support\Facades\Validator {}
 
     class View extends \Illuminate\Support\Facades\View {}
+
+    class Geocoder extends \Geocoder\Laravel\Facades\Geocoder {}
  
 }
 

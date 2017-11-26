@@ -63,10 +63,10 @@ class ConvertAddressToCoordinates implements ShouldQueue
                     $data->put('longitude',$location->getCoordinates()->getLongitude());
                     $data->put('longitude',$location->getCoordinates()->getLongitude());
                     $data->put('name',$item->name);
+                    $data->put('original_address_datas_id',$item->id);
 
                     ConvertedAddressData::updateOrCreate([
-                        'longitude'=>$data['longitude'],
-                        'latitude'=>$data['latitude'],
+                        'original_address_datas_id'=>$item->id,
                     ],$data->toArray());
                     
                     $item->update(['is_converted'=>true,'is_fail'=>false]);

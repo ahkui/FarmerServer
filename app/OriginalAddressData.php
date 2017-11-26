@@ -17,10 +17,12 @@ class OriginalAddressData extends Model
         'is_fail',
         'is_converted',
         'fail_count',
+        'is_queue',
     ];
 
     protected $casts = [
         'is_fail'=>'boolean',
+        'is_queue'=>'boolean',
         'is_converted'=>'boolean',
         'fail_count'=>'integer',
     ];

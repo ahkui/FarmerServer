@@ -34,7 +34,9 @@ class ConvertAddressToCoordinates implements ShouldQueue
     public function handle()
     {
         if (config('geocoder.providers.Geocoder\Provider\Chain\Chain.Geocoder\Provider\GoogleMaps\GoogleMaps.1')) {
-            $address = OriginalAddressData::whereIsConverted(false)->whereIsFail(false)->take(50)->get();
+            $address = OriginalAddressData::whereIsConverted(false)->whereIsFail(false)->whereIsQueue(false)->take(2500)->get();
+            foreach ($address as $item) 
+                $item->update(['is_queue'=>true]);
             foreach ($address as $item) {
                 $location = Geocoder::geocode($item->address)->get()->first();
                 $apikey = GoogleMapsApi::whereApikey(config('geocoder.providers.Geocoder\Provider\Chain\Chain.Geocoder\Provider\GoogleMaps\GoogleMaps.1'))->first();

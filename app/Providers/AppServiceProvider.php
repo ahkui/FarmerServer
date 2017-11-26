@@ -21,21 +21,23 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-
-        $apikey = GoogleMapsApi::orderBy('used_count')->first();
-        Config::set('geocoder',[
-            'cache-duration' => 9999999,
-            'providers' => [
-                Chain::class => [
-                    GoogleMaps::class => [
-                        'en-US',
-                        $apikey?$apikey->apikey:null,
+        
+        if (Schema::hasTable('google_maps_apis')) {
+            $apikey = GoogleMapsApi::orderBy('used_count')->first();
+            Config::set('geocoder',[
+                'cache-duration' => 9999999,
+                'providers' => [
+                    Chain::class => [
+                        GoogleMaps::class => [
+                            'en-US',
+                            $apikey?$apikey->apikey:null,
+                        ],
+                        GeoPlugin::class  => [],
                     ],
-                    GeoPlugin::class  => [],
                 ],
-            ],
-            'adapter'  => Client::class,
-        ]);
+                'adapter'  => Client::class,
+            ]);
+        }
     }
 
     /**

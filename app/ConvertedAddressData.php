@@ -19,6 +19,7 @@ class ConvertedAddressData extends Model
         'address',
         'latitude',
         'longitude',
+        'original_address_datas_id',
     ];
     
     protected $casts = [

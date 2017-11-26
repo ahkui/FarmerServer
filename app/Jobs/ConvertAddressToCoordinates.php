@@ -37,8 +37,8 @@ class ConvertAddressToCoordinates implements ShouldQueue
             $address = OriginalAddressData::whereIsConverted(false)->whereIsFail(false)->take(50)->get();
             if ($address->count() == 0) {
                 dump($address->count());
-                foreach (OriginalAddressData::whereIsConverted(false)->whereIsFail(true)->get() as $item) 
-                    $item->update(['is_fail'=>true]);
+                foreach (OriginalAddressData::whereIsConverted(false)->whereIsFail(true)->where('fail_count','<',GoogleMapsApi::get()->count()*2)->get() as $item) 
+                    $item->update(['is_fail'=>false]);
                 $address = OriginalAddressData::whereIsConverted(false)->whereIsFail(false)->take(50)->get();
             }
             foreach ($address as $item) {
@@ -78,7 +78,7 @@ class ConvertAddressToCoordinates implements ShouldQueue
                     $item->update(['is_converted'=>true,'is_fail'=>false]);
                 }
                 else{
-                    $item->update(['is_fail'=>true]);
+                    $item->update(['is_fail'=>true,'fail_count'=>$item->fail_count+1]);
                 }
             }
         }

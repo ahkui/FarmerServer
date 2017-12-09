@@ -15,7 +15,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-lg sticky-top navbar-light" style="background-color: deepskyblue;">
-            <div class="container">
+            <div class="container-fluid">
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Farmer') }}

@@ -32,6 +32,7 @@ function loadJSON(path, success, error) {
   xhr.open("GET", path, true);
   xhr.send();
 }
+
 function initMap() {
 
   map = new google.maps.Map(document.getElementById('map'), {
@@ -43,15 +44,13 @@ function initMap() {
 function initMarker() {
   if (map != null) {
     var markers = locations.map(function(location, index) {
-      // console.log(number(location.longitude),location.latitude)
       return new google.maps.Marker({
         position: { lat: parseFloat(location.latitude), lng: parseFloat(location.longitude) },
-        label: "id " + index
+        label: "" + index + ""
       });
     });
     var markerCluster = new MarkerClusterer(map, markers, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-  }
-  else{
+  } else {
     initMap();
   }
 }

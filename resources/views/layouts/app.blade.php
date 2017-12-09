@@ -10,6 +10,7 @@
     <title>{{ config('app.name', 'Farmer') }}</title>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </head>
 
@@ -50,7 +51,6 @@
         </nav>
         @yield('content')
     </div>
-    <!-- Scripts -->
 </body>
 
 </html>

@@ -26,4 +26,8 @@ Route::get('/', function () {
     return redirect()->route('googlemapsapi');
 });
 
+Route::get('location', function () {
+    return Storage::get('location.json');
+});
+
 Route::get('/home', 'HomeController@index')->name('home');

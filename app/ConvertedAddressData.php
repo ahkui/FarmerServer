@@ -26,4 +26,14 @@ class ConvertedAddressData extends Model
         'levels'=>'array',
         'bounds'=>'array',
     ];
+
+    protected $hidden = [
+        'levels',
+        'bounds',
+        'country',
+        'original_address_datas_id',
+        'created_at',
+        'updated_at',
+        'id',
+    ];
 }

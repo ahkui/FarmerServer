@@ -36,7 +36,7 @@ function loadJSON(path, success, error) {
 function initMap() {
 
   map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 3,
+    zoom: 8,
     center: { lat: 23.9037, lng: 121.0794 }
   });
 }

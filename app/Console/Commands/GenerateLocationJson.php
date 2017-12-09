@@ -40,7 +40,6 @@ class GenerateLocationJson extends Command
     {
         $data = ConvertedAddressData::get();
         $data = $data->toJson();
-        $data = $data->toJson();
         $result = Storage::put('location.json', $data);
         dd($result);
     }

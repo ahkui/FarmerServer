@@ -26,6 +26,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('location:generate')->daily();
         $schedule->job(new ResetGoogleMapsApiCount)->twiceDaily(0, 12);
         $schedule->job(new ConvertAddressToCoordinates)->everyMinute();
     }

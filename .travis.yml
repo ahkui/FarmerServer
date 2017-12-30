@@ -7,6 +7,7 @@ php:
   - '7.1'
   
 before_script:
+  - pecl channel-update pecl.php.net
   - composer self-update
   - pecl install mongodb
   - echo "extension=mongodb.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`

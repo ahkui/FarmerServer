@@ -8,7 +8,8 @@ php:
   
 before_script:
   - composer self-update
-  - composer install --no-interaction
+  - pecl -q install mongo && echo "extension=mongo.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
+  - composer install
   - cp .env.travis .env
   - pear install pear/PHP_CodeSniffer
   - phpenv rehash
@@ -16,7 +17,7 @@ before_script:
   - npm install npm@latest -g
   - npm install -g jshint
   - npm install
-  
+
 script:
   - vendor/bin/phpunit --coverage-text
   - phpcs --ignore=app/Http/Controllers/Auth,app/Http/Controllers/Controller.php app/Http/Controllers

@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\ConvertedAddressData;
 use Illuminate\Console\Command;
 use Storage;
+
 class GenerateLocationJson extends Command
 {
     /**

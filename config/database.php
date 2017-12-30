@@ -54,6 +54,18 @@ return [
             'engine' => null,
         ],
 
+        'mongodb' => [
+            'driver' => 'mongodb',
+            'host'     => '140.134.26.64',
+            'port'     => 27017,
+            'database' => 'farm',
+            'username' => 'farm',
+            'password' => 'farm',
+            'options'  => [
+                'database' => 'farm' // sets the authentication database required by mongo 3
+            ]
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', '127.0.0.1'),

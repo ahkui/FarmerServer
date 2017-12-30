@@ -26,3 +26,8 @@ Route::post('deploy', function()
     $exitCode = Artisan::call('migrate');
     return ['gitdeploy'=>$output,'migrate'=>$exitCode];
 });
+
+Route::get('qwe', function()
+{
+    return "qwe";
+});

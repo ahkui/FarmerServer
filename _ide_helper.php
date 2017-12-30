@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.5.24 on 2017-12-09.
+ * Generated for Laravel 5.5.24 on 2017-12-30.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -6133,7 +6133,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function broker($name = null)
         {
-            return \Illuminate\Auth\Passwords\PasswordBrokerManager::broker($name);
+            //Method inherited from \Illuminate\Auth\Passwords\PasswordBrokerManager            
+            return \Jenssegers\Mongodb\Auth\PasswordBrokerManager::broker($name);
         }
         
         /**
@@ -6144,7 +6145,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function getDefaultDriver()
         {
-            return \Illuminate\Auth\Passwords\PasswordBrokerManager::getDefaultDriver();
+            //Method inherited from \Illuminate\Auth\Passwords\PasswordBrokerManager            
+            return \Jenssegers\Mongodb\Auth\PasswordBrokerManager::getDefaultDriver();
         }
         
         /**
@@ -6156,7 +6158,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function setDefaultDriver($name)
         {
-            \Illuminate\Auth\Passwords\PasswordBrokerManager::setDefaultDriver($name);
+            //Method inherited from \Illuminate\Auth\Passwords\PasswordBrokerManager            
+            \Jenssegers\Mongodb\Auth\PasswordBrokerManager::setDefaultDriver($name);
         }
          
     }

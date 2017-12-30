@@ -2,10 +2,14 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+// use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model;
 
 class ConvertedAddressData extends Model
 {
+    protected $connection = 'mongodb';
+    protected $collection = 'converted_address_datas_collection';
+
     /**
      * The attributes that are mass assignable.
      *

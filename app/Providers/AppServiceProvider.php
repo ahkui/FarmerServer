@@ -38,6 +38,13 @@ class AppServiceProvider extends ServiceProvider
                 'adapter'  => Client::class,
             ]);
         }
+
+        // Schema::create('users_collection', function($collection)
+        // {
+
+        //     $collection->unique('email');
+        // });
+        
     }
 
     /**

@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -27,7 +26,17 @@ Route::post('deploy', function()
     return ['gitdeploy'=>$output,'migrate'=>$exitCode];
 });
 
-Route::get('qwe', function()
+Route::post('{name}', function()
 {
-    return "qwe";
+    return \App\Book::get();
+    return request()->name;
+});
+Route::get('{name}', function()
+{   
+    \App\User::firstOrCreate([
+        'name'=>'ahkui',
+        'email'=>'ahkui@outlook.com',
+    ]);
+    return \App\User::get();
+    return request()->name;
 });

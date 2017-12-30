@@ -8,7 +8,8 @@ php:
   
 before_script:
   - composer self-update
-  - pecl -q install mongo && echo "extension=mongo.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
+  - pecl install mongo
+  - echo "extension=mongo.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
   - composer install
   - cp .env.travis .env
   - pear install pear/PHP_CodeSniffer

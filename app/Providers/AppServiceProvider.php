@@ -44,7 +44,6 @@ class AppServiceProvider extends ServiceProvider
 
         //     $collection->unique('email');
         // });
-        
     }
 
     /**

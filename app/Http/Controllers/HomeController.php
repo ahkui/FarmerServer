@@ -1,10 +1,15 @@
 <?php
-
+/**
+ * 
+ */
 namespace App\Http\Controllers;
 
 use App\GoogleMapsApi;
 use Illuminate\Http\Request;
 
+/**
+ * 
+ */
 class HomeController extends Controller
 {
     /**
@@ -42,9 +47,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addgoogleapi(Request $request)
+    public function addgoogleapi()
     {
-        GoogleMapsApi::firstOrCreate(['apikey'=>$request->apikey]);
+        GoogleMapsApi::firstOrCreate(['apikey'=>request()->apikey]);
 
         return back();
     }

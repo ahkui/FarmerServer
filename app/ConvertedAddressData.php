@@ -25,10 +25,10 @@ class ConvertedAddressData extends Model
         'longitude',
         'original_address_datas_id',
     ];
-    
+
     protected $casts = [
-        'levels'=>'array',
-        'bounds'=>'array',
+        'levels'=> 'array',
+        'bounds'=> 'array',
     ];
 
     protected $hidden = [

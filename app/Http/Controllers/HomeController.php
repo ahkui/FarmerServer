@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\GoogleMapsApi;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -45,6 +45,7 @@ class HomeController extends Controller
     public function addgoogleapi(Request $request)
     {
         GoogleMapsApi::firstOrCreate(['apikey'=>$request->apikey]);
+
         return back();
     }
 }

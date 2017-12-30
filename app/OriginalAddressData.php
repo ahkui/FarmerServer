@@ -25,9 +25,9 @@ class OriginalAddressData extends Model
     ];
 
     protected $casts = [
-        'is_fail'=>'boolean',
-        'is_queue'=>'boolean',
-        'is_converted'=>'boolean',
-        'fail_count'=>'integer',
+        'is_fail'     => 'boolean',
+        'is_queue'    => 'boolean',
+        'is_converted'=> 'boolean',
+        'fail_count'  => 'integer',
     ];
 }

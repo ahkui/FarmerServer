@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        if (Schema::hasTable('google_maps_apis')) {
+        if (Schema::hasCollection('google_maps_apis_collection')) {
             $apikey = GoogleMapsApi::orderBy('used_count')->first();
             Config::set('geocoder', [
                 'cache-duration' => 9999999,
@@ -38,12 +38,6 @@ class AppServiceProvider extends ServiceProvider
                 'adapter'  => Client::class,
             ]);
         }
-
-        // Schema::create('users_collection', function($collection)
-        // {
-
-        //     $collection->unique('email');
-        // });
     }
 
     /**

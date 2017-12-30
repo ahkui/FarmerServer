@@ -13,8 +13,8 @@ return [
     |
     */
 
-    // 'default' => env('DB_CONNECTION', 'mysql'),
-    'default' => 'mongodb',
+    'default' => env('DB_CONNECTION', 'mongodb'),
+    // 'default' => 'mongodb',
 
     /*
     |--------------------------------------------------------------------------
@@ -57,13 +57,13 @@ return [
 
         'mongodb' => [
             'driver'   => 'mongodb',
-            'host'     => '140.134.26.64',
-            'port'     => 27017,
-            'database' => 'farm',
-            'username' => 'farm',
-            'password' => 'farm',
+            'host'     => env('DB_HOST', '127.0.0.1'),
+            'port'     => env('DB_PORT', '27017'),
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
             'options'  => [
-                'database' => 'farm', // sets the authentication database required by mongo 3
+                'database' => env('DB_DATABASE', 'forge'), // sets the authentication database required by mongo 3
             ],
         ],
 

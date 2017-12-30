@@ -2,10 +2,10 @@
 
 namespace App\Console;
 
+use App\Jobs\ConvertAddressToCoordinates;
+use App\Jobs\ResetGoogleMapsApiCount;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\Jobs\ResetGoogleMapsApiCount;
-use App\Jobs\ConvertAddressToCoordinates;
 
 class Kernel extends ConsoleKernel
 {
@@ -21,14 +21,15 @@ class Kernel extends ConsoleKernel
     /**
      * Define the application's command schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @param \Illuminate\Console\Scheduling\Schedule $schedule
+     *
      * @return void
      */
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('location:generate')->daily();
-        $schedule->job(new ResetGoogleMapsApiCount)->twiceDaily(0, 12);
-        $schedule->job(new ConvertAddressToCoordinates)->everyMinute();
+        $schedule->job(new ResetGoogleMapsApiCount())->twiceDaily(0, 12);
+        $schedule->job(new ConvertAddressToCoordinates())->everyMinute();
     }
 
     /**

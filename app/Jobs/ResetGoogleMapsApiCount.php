@@ -2,12 +2,12 @@
 
 namespace App\Jobs;
 
+use App\GoogleMapsApi;
 use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use App\GoogleMapsApi;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 
 class ResetGoogleMapsApiCount implements ShouldQueue
 {
@@ -30,9 +30,11 @@ class ResetGoogleMapsApiCount implements ShouldQueue
      */
     public function handle()
     {
-        foreach (GoogleMapsApi::get() as $item) 
+        foreach (GoogleMapsApi::get() as $item) {
             $item->update(['used_count'=>0]);
-        foreach (OriginalAddressData::whereIsConverted(false)->get() as $item) 
-            $item->update(['is_fail'=>false,'is_queue'=>false]);
+        }
+        foreach (OriginalAddressData::whereIsConverted(false)->get() as $item) {
+            $item->update(['is_fail'=>false, 'is_queue'=>false]);
+        }
     }
 }

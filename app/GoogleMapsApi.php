@@ -22,5 +22,4 @@ class GoogleMapsApi extends Model
         'apikey',
         'used_count',
     ];
-
 }

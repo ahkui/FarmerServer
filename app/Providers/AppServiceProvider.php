@@ -2,14 +2,14 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Schema;
+use App\GoogleMapsApi;
+use Config;
 use Geocoder\Provider\Chain\Chain;
 use Geocoder\Provider\GeoPlugin\GeoPlugin;
 use Geocoder\Provider\GoogleMaps\GoogleMaps;
 use Http\Client\Curl\Client;
-use App\GoogleMapsApi;
-use Config;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,16 +21,16 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        
+
         if (Schema::hasTable('google_maps_apis')) {
             $apikey = GoogleMapsApi::orderBy('used_count')->first();
-            Config::set('geocoder',[
+            Config::set('geocoder', [
                 'cache-duration' => 9999999,
-                'providers' => [
+                'providers'      => [
                     Chain::class => [
                         GoogleMaps::class => [
                             'en-US',
-                            $apikey?$apikey->apikey:null,
+                            $apikey ? $apikey->apikey : null,
                         ],
                         GeoPlugin::class  => [],
                     ],

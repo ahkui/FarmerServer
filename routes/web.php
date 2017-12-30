@@ -15,14 +15,13 @@ Route::any('adminer', '\Miroc\LaravelAdminer\AdminerAutologinController@index');
 Auth::routes();
 
 use App\GoogleMapsApi;
-use App\ConvertedAddressData;
-use App\OriginalAddressData;
 
 Route::get('googlemaps', 'HomeController@googleapi')->name('googlemapsapi');
 Route::post('googlemaps', 'HomeController@addgoogleapi');
 
 Route::get('/', function () {
     return view('home');
+
     return redirect()->route('googlemapsapi');
 });
 

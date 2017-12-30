@@ -9,7 +9,7 @@ class OriginalAddressData extends Model
 {
     protected $connection = 'mongodb';
     protected $collection = 'original_address_datas_collection';
-    
+
     /**
      * The attributes that are mass assignable.
      *

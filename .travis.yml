@@ -12,6 +12,7 @@ before_script:
   - pecl install mongodb
   - composer install
   - cp .env.travis .env
+  - php artisan key:generate
   - phpenv rehash
 
 script:

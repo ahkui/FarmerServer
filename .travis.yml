@@ -10,9 +10,7 @@ before_script:
   - pecl channel-update pecl.php.net
   - composer self-update
   - pecl install mongodb
-  - echo "extension=mongodb.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
   - composer install
-  - composer require "squizlabs/php_codesniffer=*"
   - cp .env.travis .env
   - phpenv rehash
 

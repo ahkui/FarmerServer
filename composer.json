@@ -15,6 +15,7 @@
         "laravel/tinker": "~1.0",
         "miroc/laravel-adminer": "^4.3",
         "mongodb/mongodb": "^1.2",
+        "squizlabs/php_codesniffer": "*",
         "toin0u/geocoder-laravel": "^4.0"
     },
     "require-dev": {

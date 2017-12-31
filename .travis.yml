@@ -12,11 +12,11 @@ before_script:
   - pecl install mongodb
   - echo "extension=mongodb.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
   - composer install
-  - composer global require "squizlabs/php_codesniffer=*"
+  - composer require "squizlabs/php_codesniffer=*"
   - cp .env.travis .env
   - phpenv rehash
 
 script:
   - vendor/bin/phpunit --coverage-text
-  - phpcs --ignore=app/Http/Controllers/Auth,app/Http/Controllers/Controller.php app/Http/Controllers
+  - vendor/bin/phpcs --ignore=app/Http/Controllers/Auth,app/Http/Controllers/Controller.php app/Http/Controllers
   

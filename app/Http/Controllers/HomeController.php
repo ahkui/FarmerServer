@@ -5,10 +5,10 @@
  *
  * @category Controller
  *
- * @author   ahkui <ahkui@outlook.com>
- * @license  https://opensource.org/licenses/MIT MIT
+ * @author  ahkui <ahkui@outlook.com>
+ * @license https://opensource.org/licenses/MIT MIT
  *
- * @link     /home Show Homepage
+ * @link /home Show Homepage
  */
 
 namespace App\Http\Controllers;
@@ -22,10 +22,10 @@ use Illuminate\Http\Request;
  *
  * @category Controller
  *
- * @author   ahkui <ahkui@outlook.com>
- * @license  https://opensource.org/licenses/MIT MIT
+ * @author  ahkui <ahkui@outlook.com>
+ * @license https://opensource.org/licenses/MIT MIT
  *
- * @link     /home Show Homepage
+ * @link /home Show Homepage
  */
 class HomeController extends Controller
 {

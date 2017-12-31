@@ -1,12 +1,13 @@
 <?php
 /**
  * Homepage Controller
- * PHP Version 7.1
- * 
+ * PHP Version 7.1.
+ *
  * @category Controller
- * @package  App\Http\Controllers
+ *
  * @author   ahkui <ahkui@outlook.com>
  * @license  https://opensource.org/licenses/MIT MIT
+ *
  * @link     /home Show Homepage
  */
 
@@ -17,12 +18,13 @@ use Illuminate\Http\Request;
 
 /**
  * Homepage Controller
- * PHP Version 7.1
- * 
+ * PHP Version 7.1.
+ *
  * @category Controller
- * @package  App\Http\Controllers
+ *
  * @author   ahkui <ahkui@outlook.com>
  * @license  https://opensource.org/licenses/MIT MIT
+ *
  * @link     /home Show Homepage
  */
 class HomeController extends Controller
@@ -69,4 +71,3 @@ class HomeController extends Controller
         return back();
     }
 }
-

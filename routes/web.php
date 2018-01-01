@@ -14,7 +14,7 @@ Route::any('adminer', '\Miroc\LaravelAdminer\AdminerAutologinController@index');
 
 Auth::routes();
 
-use App\GoogleMapsApi;
+use App\ConvertedAddressData;
 
 Route::get('googlemaps', 'HomeController@googleapi')->name('googlemapsapi');
 Route::post('googlemaps', 'HomeController@addgoogleapi');
@@ -30,63 +30,64 @@ Route::get('location', function () {
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
-    use App\ConvertedAddressData;
-Route::get('now', function () {
-    dump(
+    use App\GoogleMapsApi;
+
+    Route::get('now', function () {
+        dump(
         ConvertedAddressData::take(5)->get()
     );
-    // dump(
-    //     ConvertedAddressData::where('location4', 'near', [
-    //         '$geometry' => [
-    //             'type' => 'Point',
-    //             'coordinates' => [
-    //                 121.516018,
-    //                 25.028516,
-    //             ],
-    //         ],
-    //         '$maxDistance' => 5000,
-    //     ])
-    // );
-    // dump(
-    //     ConvertedAddressData::where('location3', 'near', [
-    //         '$geometry' => [
-    //             'type' => 'Point',
-    //             'coordinates' => [
-    //                 121.516018,
-    //                 25.028516,
-    //             ],
-    //         ],
-    //         '$maxDistance' => 5000,
-    //     ])
-    // );
-    // dump(
-    //     ConvertedAddressData::where('location2', 'near', [
-    //         '$geometry' => [
-    //             'type' => 'Point',
-    //             'coordinates' => [
-    //                 121.516018,
-    //                 25.028516,
-    //             ],
-    //         ],
-    //         '$maxDistance' => 5000,
-    //     ])
-    // );
-    // dump(
-    //     ConvertedAddressData::where('location', 'near', [
-    //         '$geometry' => [
-    //             'type' => 'Point',
-    //             'coordinates' => [
-    //                 121.516018,
-    //                 25.028516,
-    //             ],
-    //         ],
-    //         '$maxDistance' => 5000,
-    //     ])
-    // );
-    dump(
+        // dump(
+        //     ConvertedAddressData::where('location4', 'near', [
+        //         '$geometry' => [
+        //             'type' => 'Point',
+        //             'coordinates' => [
+        //                 121.516018,
+        //                 25.028516,
+        //             ],
+        //         ],
+        //         '$maxDistance' => 5000,
+        //     ])
+        // );
+        // dump(
+        //     ConvertedAddressData::where('location3', 'near', [
+        //         '$geometry' => [
+        //             'type' => 'Point',
+        //             'coordinates' => [
+        //                 121.516018,
+        //                 25.028516,
+        //             ],
+        //         ],
+        //         '$maxDistance' => 5000,
+        //     ])
+        // );
+        // dump(
+        //     ConvertedAddressData::where('location2', 'near', [
+        //         '$geometry' => [
+        //             'type' => 'Point',
+        //             'coordinates' => [
+        //                 121.516018,
+        //                 25.028516,
+        //             ],
+        //         ],
+        //         '$maxDistance' => 5000,
+        //     ])
+        // );
+        // dump(
+        //     ConvertedAddressData::where('location', 'near', [
+        //         '$geometry' => [
+        //             'type' => 'Point',
+        //             'coordinates' => [
+        //                 121.516018,
+        //                 25.028516,
+        //             ],
+        //         ],
+        //         '$maxDistance' => 5000,
+        //     ])
+        // );
+        dump(
         ConvertedAddressData::where('location3', 'near', [
             '$geometry' => [
-                'type' => 'Point',
+                'type'        => 'Point',
                 'coordinates' => [
                         121.5063464,
                         25.02963,
@@ -95,5 +96,6 @@ Route::get('now', function () {
             '$maxDistance' => 1000,
         ])->get()
     );
-    return Carbon\Carbon::now();
-});
+
+        return Carbon\Carbon::now();
+    });

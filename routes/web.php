@@ -30,3 +30,6 @@ Route::get('location', function () {
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('now', function () {
+    return Carbon\Carbon::now();
+});

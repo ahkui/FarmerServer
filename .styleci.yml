@@ -1,4 +1,4 @@
 finder:
   not-name:
-    - *.blade.php
+    - '*.blade.php'
     - AllDataVersionOne.php

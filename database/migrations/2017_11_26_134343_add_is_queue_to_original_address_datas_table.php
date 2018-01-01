@@ -13,10 +13,11 @@ class AddIsQueueToOriginalAddressDatasTable extends Migration
      */
     public function up()
     {
-        if (env('DB_CONNECTION') != 'mongodb') 
-        Schema::table('original_address_datas', function (Blueprint $table) {
-            $table->boolean('is_queue')->default(false);
-        });
+        if (env('DB_CONNECTION') != 'mongodb') {
+            Schema::table('original_address_datas', function (Blueprint $table) {
+                $table->boolean('is_queue')->default(false);
+            });
+        }
     }
 
     /**
@@ -26,9 +27,10 @@ class AddIsQueueToOriginalAddressDatasTable extends Migration
      */
     public function down()
     {
-        if (env('DB_CONNECTION') != 'mongodb') 
-        Schema::table('original_address_datas', function (Blueprint $table) {
-            $table->dropColumn('is_queue');
-        });
+        if (env('DB_CONNECTION') != 'mongodb') {
+            Schema::table('original_address_datas', function (Blueprint $table) {
+                $table->dropColumn('is_queue');
+            });
+        }
     }
 }

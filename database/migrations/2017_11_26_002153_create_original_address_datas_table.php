@@ -13,15 +13,16 @@ class CreateOriginalAddressDatasTable extends Migration
      */
     public function up()
     {
-        if (env('DB_CONNECTION') != 'mongodb') 
-        Schema::create('original_address_datas', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('address');
-            $table->boolean('is_fail')->default(false);
-            $table->boolean('is_converted')->default(false);
-            $table->timestamps();
-        });
+        if (env('DB_CONNECTION') != 'mongodb') {
+            Schema::create('original_address_datas', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('name');
+                $table->string('address');
+                $table->boolean('is_fail')->default(false);
+                $table->boolean('is_converted')->default(false);
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -31,7 +32,8 @@ class CreateOriginalAddressDatasTable extends Migration
      */
     public function down()
     {
-        if (env('DB_CONNECTION') != 'mongodb') 
-        Schema::dropIfExists('original_address_datas');
+        if (env('DB_CONNECTION') != 'mongodb') {
+            Schema::dropIfExists('original_address_datas');
+        }
     }
 }

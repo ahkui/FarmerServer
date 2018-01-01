@@ -66,6 +66,7 @@ class ConvertAddressToCoordinates implements ShouldQueue
                     $data->longitude = $location->getCoordinates()->getLongitude();
                     $data->location = ['type'=>'Point', 'coordinates'=>[$location->getCoordinates()->getLatitude(), $location->getCoordinates()->getLongitude()]];
                     $data->name = $item->name;
+                    $data->save();
                     // $converted = ConvertedAddressData::firstOrCreate($data->toArray());
                     // $item->converted_address_data()->save($converted);
                     $item->converted_address_data()->save($data);

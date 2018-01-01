@@ -23,7 +23,7 @@ class ConvertAddressToCoordinates implements ShouldQueue
      */
     public function __construct()
     {
-        // 
+        //
     }
 
     /**
@@ -35,8 +35,9 @@ class ConvertAddressToCoordinates implements ShouldQueue
     {
         if (!empty(config('geocoder.providers.Geocoder\Provider\Chain\Chain.Geocoder\Provider\GoogleMaps\GoogleMaps.1'))) {
             $address = OriginalAddressData::whereNull('is_converted')->whereNull('is_fail')->whereNull('is_queue')->take(2500)->get();
-            foreach ($address as $item) 
+            foreach ($address as $item) {
                 $item->update(['is_queue'=>true]);
+            }
             foreach ($address as $item) {
                 $location = Geocoder::geocode($item->address)->get()->first();
                 $apikey = GoogleMapsApi::whereApikey(config('geocoder.providers.Geocoder\Provider\Chain\Chain.Geocoder\Provider\GoogleMaps\GoogleMaps.1'))->first();

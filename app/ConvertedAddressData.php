@@ -40,7 +40,7 @@ class ConvertedAddressData extends Model
         'updated_at',
         'id',
     ];
-    
+
     public function original_address_datas()
     {
         return $this->belongsTo('OriginalAddressData');

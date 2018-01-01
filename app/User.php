@@ -14,11 +14,10 @@ class User extends Authenticatable
     use Notifiable, AuthenticableTrait;
 
     /**
-     * init some value
+     * init some value.
      */
     public function __construct()
     {
-        
     }
 
     /**

@@ -7,14 +7,17 @@ php:
   - '7.1'
   
 before_script:
-  - pecl channel-update pecl.php.net
-  - composer self-update
-  - pecl install mongodb
-  - composer install
+  - travis_retry pecl channel-update pecl.php.net
+  - travis_retry composer self-update
+  - travis_retry pecl install mongodb
+  - travis_retry composer install --no-interaction --prefer-source --dev
   - cp .env.travis .env
   - php artisan key:generate
   - phpenv rehash
 
 script:
-  - vendor/bin/phpunit --coverage-text
-  - bin/atoum --test-all
+  - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.xml
+
+
+after_success:
+    - bash <(curl -s https://codecov.io/bash) -t b4a0bf37-ac3c-4b4e-8649-292ca30cf70f

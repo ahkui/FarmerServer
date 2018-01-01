@@ -54,6 +54,7 @@ class ConvertAddressToCoordinates implements ShouldQueue
                         $temp->put($key, $value ? $value->getName() : '');
                     }
                     $data->levels = $temp;
+                    $data->bounds = [];
                     $data->bounds['south'] = $location->getBounds()->getSouth();
                     $data->bounds['west'] = $location->getBounds()->getWest();
                     $data->bounds['north'] = $location->getBounds()->getNorth();

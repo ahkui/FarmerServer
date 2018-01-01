@@ -13,18 +13,19 @@ class CreateConvertedAddressDatasTable extends Migration
      */
     public function up()
     {
-        if (env('DB_CONNECTION') != 'mongodb') 
-        Schema::create('converted_address_datas', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name')->nullable();
-            $table->text('levels');
-            $table->text('bounds');
-            $table->string('country');
-            $table->string('address');
-            $table->string('latitude');
-            $table->string('longitude');
-            $table->timestamps();
-        });
+        if (env('DB_CONNECTION') != 'mongodb') {
+            Schema::create('converted_address_datas', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('name')->nullable();
+                $table->text('levels');
+                $table->text('bounds');
+                $table->string('country');
+                $table->string('address');
+                $table->string('latitude');
+                $table->string('longitude');
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -34,7 +35,8 @@ class CreateConvertedAddressDatasTable extends Migration
      */
     public function down()
     {
-        if (env('DB_CONNECTION') != 'mongodb') 
-        Schema::dropIfExists('converted_address_datas');
+        if (env('DB_CONNECTION') != 'mongodb') {
+            Schema::dropIfExists('converted_address_datas');
+        }
     }
 }

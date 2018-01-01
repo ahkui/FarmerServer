@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(GoogleApiKeys::class);
         $this->call(AllDataVersionOne::class);
     }
 }

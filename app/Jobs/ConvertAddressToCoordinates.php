@@ -33,6 +33,7 @@ class ConvertAddressToCoordinates implements ShouldQueue
      */
     public function handle()
     {
+        dump(config('geocoder.providers.Geocoder\Provider\Chain\Chain.Geocoder\Provider\GoogleMaps\GoogleMaps.1'));
         if (config('geocoder.providers.Geocoder\Provider\Chain\Chain.Geocoder\Provider\GoogleMaps\GoogleMaps.1')) {
             $address = OriginalAddressData::whereIsConverted(false)->whereIsFail(false)->whereIsQueue(false)->take(2500)->get();
             foreach ($address as $item) {

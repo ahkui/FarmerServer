@@ -8,7 +8,7 @@ use Jenssegers\Mongodb\Eloquent\Model;
 class ConvertedAddressData extends Model
 {
     protected $connection = 'mongodb';
-    protected $collection = 'converted_address_datas_collection';
+    // protected $collection = 'converted_address_datas_collection';
 
     /**
      * The attributes that are mass assignable.

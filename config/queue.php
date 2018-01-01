@@ -79,7 +79,7 @@ return [
     */
 
     'failed' => [
-        'database' => 'redis',
+        'database' => 'mongodb',
         // 'database' => env('DB_CONNECTION', 'mysql'),
         'table'    => 'failed_jobs',
     ],

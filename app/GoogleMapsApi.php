@@ -8,7 +8,7 @@ use Jenssegers\Mongodb\Eloquent\Model;
 class GoogleMapsApi extends Model
 {
     protected $connection = 'mongodb';
-    protected $collection = 'google_maps_apis_collection';
+    // protected $collection = 'google_maps_apis_collection';
 
     /**
      * Indicates if the model should be timestamped.

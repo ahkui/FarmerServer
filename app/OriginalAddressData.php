@@ -35,5 +35,4 @@ class OriginalAddressData extends Model
     {
         return $this->hasOne('ConvertedAddressData');
     }
-
 }

@@ -31,17 +31,17 @@ class ConvertedAddressData extends Model
         'bounds'=> 'array',
     ];
 
-    protected $hidden = [
-        'levels',
-        'bounds',
-        'country',
-        'original_address_datas_id',
-        'created_at',
-        'updated_at',
-        'id',
-    ];
+    // protected $hidden = [
+    //     'levels',
+    //     'bounds',
+    //     'country',
+    //     'original_address_datas_id',
+    //     'created_at',
+    //     'updated_at',
+    //     'id',
+    // ];
 
-    public function original_address_datas()
+    public function original_address_data()
     {
         return $this->belongsTo(OriginalAddressData::class);
     }

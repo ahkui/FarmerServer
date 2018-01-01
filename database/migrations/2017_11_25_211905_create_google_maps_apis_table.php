@@ -13,6 +13,7 @@ class CreateGoogleMapsApisTable extends Migration
      */
     public function up()
     {
+        if (env('DB_CONNECTION') != 'mongodb') 
         Schema::create('google_maps_apis', function (Blueprint $table) {
             $table->increments('id');
             $table->string('apikey');
@@ -27,6 +28,7 @@ class CreateGoogleMapsApisTable extends Migration
      */
     public function down()
     {
+        if (env('DB_CONNECTION') != 'mongodb') 
         Schema::dropIfExists('google_maps_apis');
     }
 }

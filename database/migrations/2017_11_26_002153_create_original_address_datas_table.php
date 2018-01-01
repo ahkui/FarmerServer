@@ -13,6 +13,7 @@ class CreateOriginalAddressDatasTable extends Migration
      */
     public function up()
     {
+        if (env('DB_CONNECTION') != 'mongodb') 
         Schema::create('original_address_datas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
@@ -30,6 +31,7 @@ class CreateOriginalAddressDatasTable extends Migration
      */
     public function down()
     {
+        if (env('DB_CONNECTION') != 'mongodb') 
         Schema::dropIfExists('original_address_datas');
     }
 }

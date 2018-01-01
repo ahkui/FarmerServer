@@ -13,6 +13,11 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        if (env('DB_CONNECTION') == 'mongodb') 
+            Schema::create('users', function (Blueprint $table) {
+                $table->unique('email');
+            });
+        else
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');

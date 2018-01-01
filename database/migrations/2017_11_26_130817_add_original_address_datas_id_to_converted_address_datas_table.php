@@ -13,6 +13,7 @@ class AddOriginalAddressDatasIdToConvertedAddressDatasTable extends Migration
      */
     public function up()
     {
+        if (env('DB_CONNECTION') != 'mongodb') 
         Schema::table('converted_address_datas', function (Blueprint $table) {
             $table->unsignedInteger('original_address_datas_id')->unique()->index('FK_converted_address_datas_original_address_datas_id');
             $table->foreign('original_address_datas_id', 'FK_converted_address_datas_original_address_datas_id')->references('id')->on('original_address_datas')->onUpdate('CASCADE')->onDelete('CASCADE');
@@ -26,6 +27,7 @@ class AddOriginalAddressDatasIdToConvertedAddressDatasTable extends Migration
      */
     public function down()
     {
+        if (env('DB_CONNECTION') != 'mongodb') 
         Schema::table('converted_address_datas', function (Blueprint $table) {
             $table->dropForeign('FK_converted_address_datas_original_address_datas_id');
             $table->dropColumn('original_address_datas_id');

@@ -13,6 +13,7 @@ class CreateConvertedAddressDatasTable extends Migration
      */
     public function up()
     {
+        if (env('DB_CONNECTION') != 'mongodb') 
         Schema::create('converted_address_datas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
@@ -33,6 +34,7 @@ class CreateConvertedAddressDatasTable extends Migration
      */
     public function down()
     {
+        if (env('DB_CONNECTION') != 'mongodb') 
         Schema::dropIfExists('converted_address_datas');
     }
 }

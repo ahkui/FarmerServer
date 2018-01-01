@@ -33,12 +33,8 @@ class ConvertAddressToCoordinates implements ShouldQueue
      */
     public function handle()
     {
-        // $first = OriginalAddressData::get()->first();
-        // $first2 = ConvertedAddressData::get()->first();
-        // dd($first->toArray(),$first->converted_address_data->toArray());
-        // dd($first2->toArray(),$first2->original_address_data->toArray());
         if (!empty(config('geocoder.providers.Geocoder\Provider\Chain\Chain.Geocoder\Provider\GoogleMaps\GoogleMaps.1'))) {
-            $address = OriginalAddressData::whereNull('is_converted')->whereNull('is_fail')->whereNull('is_queue')->take(3000)->get();
+            $address = OriginalAddressData::whereNull('is_converted')->whereNull('is_fail')->whereNull('is_queue')->take(2500)->get();
             foreach ($address as $item) {
                 $item->update(['is_queue'=>true]);
             }
@@ -59,7 +55,6 @@ class ConvertAddressToCoordinates implements ShouldQueue
                     }
                     $data->put('levels', $temp);
                     $temp = collect();
-                    $temp->put('original', $location->getBounds());
                     $temp->put('south', $location->getBounds()->getSouth());
                     $temp->put('west', $location->getBounds()->getWest());
                     $temp->put('north', $location->getBounds()->getNorth());
@@ -69,7 +64,7 @@ class ConvertAddressToCoordinates implements ShouldQueue
                     $data->put('address', $location->getFormattedAddress());
                     $data->put('latitude', $location->getCoordinates()->getLatitude());
                     $data->put('longitude', $location->getCoordinates()->getLongitude());
-                    $data->put('longitude', $location->getCoordinates()->getLongitude());
+                    $data->put('location', ['type'=>'Point','coordinates'=>[$location->getCoordinates()->getLatitude(),$location->getCoordinates()->getLongitude()]]);
                     $data->put('name', $item->name);
                     // $converted = ConvertedAddressData::firstOrCreate($data->toArray());
                     // $item->converted_address_data()->save($converted);

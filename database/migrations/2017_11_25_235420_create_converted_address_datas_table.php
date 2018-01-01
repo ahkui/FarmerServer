@@ -26,6 +26,12 @@ class CreateConvertedAddressDatasTable extends Migration
                 $table->timestamps();
             });
         }
+        else
+            Schema::create('converted_address_datas', function (Blueprint $table) {
+                $table->geospatial('location','2dsphere');
+                $table->geospatial('location2','2d');
+            });
+
     }
 
     /**

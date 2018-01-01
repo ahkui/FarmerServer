@@ -30,6 +30,17 @@ Route::get('location', function () {
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
+    use App\ConvertedAddressData;
 Route::get('now', function () {
+    dump(ConvertedAddressData::where('location', 'near', [
+    '$geometry' => [
+        'type' => 'Point',
+        'coordinates' => [
+            25.028516,
+            121.516018,
+        ],
+    ],
+    '$maxDistance' => 50,
+])->get());
     return Carbon\Carbon::now();
 });

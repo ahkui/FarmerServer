@@ -1,0 +1,4 @@
+finder:
+  not-name:
+    - *.blade.php
+    - AllDataVersionOne.php

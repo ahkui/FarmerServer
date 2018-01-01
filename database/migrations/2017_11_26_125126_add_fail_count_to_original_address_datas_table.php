@@ -13,10 +13,11 @@ class AddFailCountToOriginalAddressDatasTable extends Migration
      */
     public function up()
     {
-        if (env('DB_CONNECTION') != 'mongodb') 
-        Schema::table('original_address_datas', function (Blueprint $table) {
-            $table->integer('fail_count')->default(0);
-        });
+        if (env('DB_CONNECTION') != 'mongodb') {
+            Schema::table('original_address_datas', function (Blueprint $table) {
+                $table->integer('fail_count')->default(0);
+            });
+        }
     }
 
     /**
@@ -26,9 +27,10 @@ class AddFailCountToOriginalAddressDatasTable extends Migration
      */
     public function down()
     {
-        if (env('DB_CONNECTION') != 'mongodb') 
-        Schema::table('original_address_datas', function (Blueprint $table) {
-            $table->dropColumn('fail_count');
-        });
+        if (env('DB_CONNECTION') != 'mongodb') {
+            Schema::table('original_address_datas', function (Blueprint $table) {
+                $table->dropColumn('fail_count');
+            });
+        }
     }
 }

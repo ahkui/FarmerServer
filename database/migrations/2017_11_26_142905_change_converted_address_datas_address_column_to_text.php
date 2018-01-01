@@ -13,10 +13,11 @@ class ChangeConvertedAddressDatasAddressColumnToText extends Migration
      */
     public function up()
     {
-        if (env('DB_CONNECTION') != 'mongodb') 
-        Schema::table('converted_address_datas', function (Blueprint $table) {
-            $table->text('address')->change();
-        });
+        if (env('DB_CONNECTION') != 'mongodb') {
+            Schema::table('converted_address_datas', function (Blueprint $table) {
+                $table->text('address')->change();
+            });
+        }
     }
 
     /**
@@ -26,9 +27,10 @@ class ChangeConvertedAddressDatasAddressColumnToText extends Migration
      */
     public function down()
     {
-        if (env('DB_CONNECTION') != 'mongodb') 
-        Schema::table('converted_address_datas', function (Blueprint $table) {
-            $table->string('address')->change();
-        });
+        if (env('DB_CONNECTION') != 'mongodb') {
+            Schema::table('converted_address_datas', function (Blueprint $table) {
+                $table->string('address')->change();
+            });
+        }
     }
 }

@@ -13,12 +13,13 @@ class CreateGoogleMapsApisTable extends Migration
      */
     public function up()
     {
-        if (env('DB_CONNECTION') != 'mongodb') 
-        Schema::create('google_maps_apis', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('apikey');
-            $table->integer('used_count')->default(0);
-        });
+        if (env('DB_CONNECTION') != 'mongodb') {
+            Schema::create('google_maps_apis', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('apikey');
+                $table->integer('used_count')->default(0);
+            });
+        }
     }
 
     /**
@@ -28,7 +29,8 @@ class CreateGoogleMapsApisTable extends Migration
      */
     public function down()
     {
-        if (env('DB_CONNECTION') != 'mongodb') 
-        Schema::dropIfExists('google_maps_apis');
+        if (env('DB_CONNECTION') != 'mongodb') {
+            Schema::dropIfExists('google_maps_apis');
+        }
     }
 }

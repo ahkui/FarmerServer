@@ -13,16 +13,17 @@ class CreatePasswordResetsTable extends Migration
      */
     public function up()
     {
-        if (env('DB_CONNECTION') == 'mongodb') 
+        if (env('DB_CONNECTION') == 'mongodb') {
             Schema::create('password_resets', function (Blueprint $table) {
                 $table->index('email');
             });
-        else
-        Schema::create('password_resets', function (Blueprint $table) {
-            $table->string('email')->index();
-            $table->string('token');
-            $table->timestamp('created_at')->nullable();
-        });
+        } else {
+            Schema::create('password_resets', function (Blueprint $table) {
+                $table->string('email')->index();
+                $table->string('token');
+                $table->timestamp('created_at')->nullable();
+            });
+        }
     }
 
     /**

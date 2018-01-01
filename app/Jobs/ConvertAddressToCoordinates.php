@@ -54,12 +54,11 @@ class ConvertAddressToCoordinates implements ShouldQueue
                         $temp->put($key, $value ? $value->getName() : '');
                     }
                     $data->levels = $temp;
-                    $temp = collect();
-                    $temp->put('south', $location->getBounds()->getSouth());
-                    $temp->put('west', $location->getBounds()->getWest());
-                    $temp->put('north', $location->getBounds()->getNorth());
-                    $temp->put('east', $location->getBounds()->getEast());
-                    $data->bounds = $temp;
+                    $data->bounds = [];
+                    $data->bounds->south = $location->getBounds()->getSouth();
+                    $data->bounds->west = $location->getBounds()->getWest();
+                    $data->bounds->north = $location->getBounds()->getNorth();
+                    $data->bounds->east = $location->getBounds()->getEast();
                     $data->country = $location->getCountry() ? $location->getCountry()->getName() : '';
                     $data->address = $location->getFormattedAddress();
                     $data->latitude = $location->getCoordinates()->getLatitude();
@@ -72,7 +71,6 @@ class ConvertAddressToCoordinates implements ShouldQueue
                     $item->update(['is_converted'=>true, 'is_fail'=>false]);
                 } else {
                     $item->update(['is_fail'=>true, 'fail_count'=>$item->fail_count + 1]);
-                    dump('fail');
                 }
             }
         }

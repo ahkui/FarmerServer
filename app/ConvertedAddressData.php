@@ -4,6 +4,7 @@ namespace App;
 
 // use Illuminate\Database\Eloquent\Model;
 use Jenssegers\Mongodb\Eloquent\Model;
+use App\OriginalAddressData;
 
 class ConvertedAddressData extends Model
 {
@@ -40,9 +41,9 @@ class ConvertedAddressData extends Model
         'updated_at',
         'id',
     ];
-    
+
     public function original_address_datas()
     {
-        return $this->belongsTo('OriginalAddressData');
+        return $this->belongsTo(OriginalAddressData::class);
     }
 }

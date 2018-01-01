@@ -1,3 +1,4 @@
+sudo: false
 os:
   - linux
 
@@ -5,14 +6,20 @@ language: php
 
 php:
   - '7.1'
-  
+
+services:
+  - redis-server
+  - mongodb
+
 before_script:
+  - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
   - travis_retry pecl channel-update pecl.php.net
   - travis_retry composer self-update
   - travis_retry pecl install mongodb
   - travis_retry composer install --no-interaction --prefer-source
   - cp .env.travis .env
   - php artisan key:generate
+  - php artisan migrate
   - phpenv rehash
 
 script:

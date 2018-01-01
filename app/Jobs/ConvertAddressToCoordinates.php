@@ -51,7 +51,7 @@ class ConvertAddressToCoordinates implements ShouldQueue
                     $data = new ConvertedAddressData();
                     $data->levels = [];
                     foreach ($location->getAdminLevels() as $key => $value) {
-                        $data->levels[$key] = $value ? $value->getName() : '';
+                        $data->levels->{$key} = $value ? $value->getName() : '';
                     }
                     $data->bounds = [
                         'south' => $location->getBounds()->getSouth(),

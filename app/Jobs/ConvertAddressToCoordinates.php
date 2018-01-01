@@ -54,10 +54,12 @@ class ConvertAddressToCoordinates implements ShouldQueue
                         $temp->put($key, $value ? $value->getName() : '');
                     }
                     $data->levels = $temp;
-                    $data->location_bound['south'] = $location->getBounds()->getSouth();
-                    $data->location_bound['west'] = $location->getBounds()->getWest();
-                    $data->location_bound['north'] = $location->getBounds()->getNorth();
-                    $data->location_bound['east'] = $location->getBounds()->getEast();
+                    $data->bounds = [
+                        'south' => $location->getBounds()->getSouth(),
+                        'west' => $location->getBounds()->getWest(),
+                        'north' => $location->getBounds()->getNorth(),
+                        'east' => $location->getBounds()->getEast(),
+                    ];
                     $data->country = $location->getCountry() ? $location->getCountry()->getName() : '';
                     $data->address = $location->getFormattedAddress();
                     $data->latitude = $location->getCoordinates()->getLatitude();

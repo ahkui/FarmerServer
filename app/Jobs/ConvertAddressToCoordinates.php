@@ -49,11 +49,10 @@ class ConvertAddressToCoordinates implements ShouldQueue
                 }
                 if ($location) {
                     $data = new ConvertedAddressData();
-                    $temp = collect();
+                    $data->levels = [];
                     foreach ($location->getAdminLevels() as $key => $value) {
-                        $temp->put($key, $value ? $value->getName() : '');
+                        $data->levels[$key] = $value ? $value->getName() : '';
                     }
-                    $data->levels = $temp;
                     $data->bounds = [
                         'south' => $location->getBounds()->getSouth(),
                         'west'  => $location->getBounds()->getWest(),

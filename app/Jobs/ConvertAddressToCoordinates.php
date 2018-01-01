@@ -48,27 +48,27 @@ class ConvertAddressToCoordinates implements ShouldQueue
                     $apikey->update(['used_count'=>$apikey->used_count + 1]);
                 }
                 if ($location) {
-                    $data = collect();
+                    $data = new ConvertedAddressData();
                     $temp = collect();
                     foreach ($location->getAdminLevels() as $key => $value) {
                         $temp->put($key, $value ? $value->getName() : '');
                     }
-                    $data->put('levels', $temp);
+                    $data->levels = $temp;
                     $temp = collect();
                     $temp->put('south', $location->getBounds()->getSouth());
                     $temp->put('west', $location->getBounds()->getWest());
                     $temp->put('north', $location->getBounds()->getNorth());
                     $temp->put('east', $location->getBounds()->getEast());
-                    $data->put('bounds', $temp);
-                    $data->put('country', $location->getCountry() ? $location->getCountry()->getName() : '');
-                    $data->put('address', $location->getFormattedAddress());
-                    $data->put('latitude', $location->getCoordinates()->getLatitude());
-                    $data->put('longitude', $location->getCoordinates()->getLongitude());
-                    $data->put('location', ['type'=>'Point','coordinates'=>[$location->getCoordinates()->getLatitude(),$location->getCoordinates()->getLongitude()]]);
-                    $data->put('name', $item->name);
+                    $data->bounds = $temp;
+                    $data->country = $location->getCountry() ? $location->getCountry()->getName() : '';
+                    $data->address = $location->getFormattedAddress();
+                    $data->latitude = $location->getCoordinates()->getLatitude();
+                    $data->longitude = $location->getCoordinates()->getLongitude();
+                    $data->location = ['type'=>'Point','coordinates'=>[$location->getCoordinates()->getLatitude(),$location->getCoordinates()->getLongitude()]];
+                    $data->name = $item->name;
                     // $converted = ConvertedAddressData::firstOrCreate($data->toArray());
                     // $item->converted_address_data()->save($converted);
-                    $item->converted_address_data()->save(new ConvertedAddressData($data->toArray()));
+                    $item->converted_address_data()->save($data);
                     $item->update(['is_converted'=>true, 'is_fail'=>false]);
                 } else {
                     $item->update(['is_fail'=>true, 'fail_count'=>$item->fail_count + 1]);

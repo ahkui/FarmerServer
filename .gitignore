@@ -12,3 +12,4 @@ yarn-error.log
 .env
 *.sublime-workspace
 *.sublime-project
+coverage.xml

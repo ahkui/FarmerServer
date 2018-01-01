@@ -30,4 +30,10 @@ class OriginalAddressData extends Model
         'is_converted'=> 'boolean',
         'fail_count'  => 'integer',
     ];
+
+    public function converted_address_data()
+    {
+        return $this->hasOne('ConvertedAddressData');
+    }
+
 }

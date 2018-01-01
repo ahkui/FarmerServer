@@ -14,6 +14,14 @@ class User extends Authenticatable
     use Notifiable, AuthenticableTrait;
 
     /**
+     * init some value
+     */
+    public function __construct()
+    {
+        
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array

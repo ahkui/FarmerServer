@@ -23,7 +23,7 @@ class ConvertAddressToCoordinates implements ShouldQueue
      */
     public function __construct()
     {
-        //
+        // 
     }
 
     /**
@@ -33,12 +33,10 @@ class ConvertAddressToCoordinates implements ShouldQueue
      */
     public function handle()
     {
-        dump(config('geocoder.providers.Geocoder\Provider\Chain\Chain.Geocoder\Provider\GoogleMaps\GoogleMaps.1'));
-        if (config('geocoder.providers.Geocoder\Provider\Chain\Chain.Geocoder\Provider\GoogleMaps\GoogleMaps.1')) {
-            $address = OriginalAddressData::whereIsConverted(false)->whereIsFail(false)->whereIsQueue(false)->take(2500)->get();
-            foreach ($address as $item) {
+        if (!empty(config('geocoder.providers.Geocoder\Provider\Chain\Chain.Geocoder\Provider\GoogleMaps\GoogleMaps.1'))) {
+            $address = OriginalAddressData::whereNull('is_converted')->whereNull('is_fail')->whereNull('is_queue')->take(3)->get();
+            foreach ($address as $item) 
                 $item->update(['is_queue'=>true]);
-            }
             foreach ($address as $item) {
                 $location = Geocoder::geocode($item->address)->get()->first();
                 $apikey = GoogleMapsApi::whereApikey(config('geocoder.providers.Geocoder\Provider\Chain\Chain.Geocoder\Provider\GoogleMaps\GoogleMaps.1'))->first();
@@ -48,6 +46,7 @@ class ConvertAddressToCoordinates implements ShouldQueue
                     $apikey = GoogleMapsApi::whereApikey(config('geocoder.providers.Geocoder\Provider\Chain\Chain.Geocoder\Provider\GoogleMaps\GoogleMaps.1'))->first();
                     $apikey->update(['used_count'=>$apikey->used_count + 1]);
                 }
+                dump(config('geocoder.providers.Geocoder\Provider\Chain\Chain.Geocoder\Provider\GoogleMaps\GoogleMaps.1'),$item->address,$location);
                 if ($location) {
                     $data = collect();
                     $temp = collect();
@@ -68,15 +67,13 @@ class ConvertAddressToCoordinates implements ShouldQueue
                     $data->put('longitude', $location->getCoordinates()->getLongitude());
                     $data->put('name', $item->name);
                     $data->put('original_address_datas_id', $item->id);
-
-                    ConvertedAddressData::updateOrCreate([
-                        'original_address_datas_id'=> $item->id,
-                    ], $data->toArray());
-
+                    $item->converted_address_data()->save(new ConvertedAddressData($data->toArray()));
                     $item->update(['is_converted'=>true, 'is_fail'=>false]);
                 } else {
                     $item->update(['is_fail'=>true, 'fail_count'=>$item->fail_count + 1]);
+                dump("fail");
                 }
+                dump("here");
             }
         }
         //*/

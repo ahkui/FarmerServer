@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        if (Schema::hasCollection('google_maps_apis_collection')) {
+        if (Schema::hasCollection('google_maps_apis')) {
             $apikey = GoogleMapsApi::orderBy('used_count')->first();
             Config::set('geocoder', [
                 'cache-duration' => 9999999,

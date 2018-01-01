@@ -4,6 +4,7 @@ namespace App;
 
 // use Illuminate\Database\Eloquent\Model;
 use Jenssegers\Mongodb\Eloquent\Model;
+use App\ConvertedAddressData;
 
 class OriginalAddressData extends Model
 {
@@ -33,7 +34,7 @@ class OriginalAddressData extends Model
 
     public function converted_address_data()
     {
-        return $this->hasOne('ConvertedAddressData');
+        return $this->hasOne(ConvertedAddressData::class);
     }
 
 }

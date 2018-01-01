@@ -33,7 +33,7 @@ class ResetGoogleMapsApiCount implements ShouldQueue
         foreach (GoogleMapsApi::get() as $item) {
             $item->update(['used_count'=>0]);
         }
-        foreach (OriginalAddressData::whereIsConverted(false)->get() as $item) {
+        foreach (OriginalAddressData::whereNull('is_converted')->get() as $item) {
             $item->update(['is_fail'=>false, 'is_queue'=>false]);
         }
     }

@@ -15,7 +15,7 @@ Route::any('adminer', '\Miroc\LaravelAdminer\AdminerAutologinController@index');
 Auth::routes();
 
 use App\ConvertedAddressData;
-use App\OriginalAddressData;
+use App\GoogleMapsApi;
 
 Route::get('googlemaps', 'HomeController@googleapi')->name('googlemapsapi');
 Route::post('googlemaps', 'HomeController@addgoogleapi');
@@ -31,13 +31,13 @@ Route::get('location', function () {
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
-    use App\GoogleMapsApi;
+    use App\OriginalAddressData;
 
-Route::get('now', function () {
-    dump(
+    Route::get('now', function () {
+        dump(
         OriginalAddressData::whereNull('is_converted')->get()
     );
-    dump(
+        dump(
         ConvertedAddressData::where('location', 'near', [
             '$geometry' => [
                 'type'        => 'Point',
@@ -49,5 +49,6 @@ Route::get('now', function () {
             '$maxDistance' => 1000,
         ])->get()
     );
-    return Carbon\Carbon::now();
-});
+
+        return Carbon\Carbon::now();
+    });

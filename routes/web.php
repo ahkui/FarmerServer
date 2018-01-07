@@ -10,7 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::any('adminer', '\Miroc\LaravelAdminer\AdminerAutologinController@index');
+Route::domain('sitcon.ahkui.com')->group(function () {
+    Route::get('/', function () {
+        abort(404);
+        return view('sitcon');
+    })->name('sitcon');
+});
 
 Auth::routes();
 
@@ -51,3 +56,6 @@ Route::get('now', function () {
     );
     return Carbon\Carbon::now();
 });
+
+
+

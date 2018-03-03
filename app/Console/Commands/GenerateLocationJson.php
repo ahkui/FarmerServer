@@ -42,7 +42,7 @@ class GenerateLocationJson extends Command
     {
         // $data = ConvertedAddressData::get();
         // Storage::put('location.json', $data);
-        if(FarmPlace::count() > 0){
+        if (FarmPlace::count() > 0) {
             ini_set('memory_limit', '-1');
             Storage::put('location2.json', '[');
             $data = FarmPlace::skip(0)->take(1)->get()->first();
@@ -50,12 +50,13 @@ class GenerateLocationJson extends Command
             $count = 1;
             $start = 0;
             $step = 10000;
-            while($count > 0){
+            while ($count > 0) {
                 dump($start);
                 $data = FarmPlace::skip(1 + ($start * $step))->take($step)->get();
                 $count = $data->count();
-                if ($count > 0) 
-                    Storage::append('location2.json', ','.substr($data->toJson(),1, -1));
+                if ($count > 0) {
+                    Storage::append('location2.json', ','.substr($data->toJson(), 1, -1));
+                }
                 $start += 1;
             }
             Storage::append('location2.json', ']');

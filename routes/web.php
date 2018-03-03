@@ -33,7 +33,7 @@ Route::get('/', function () {
 });
 
 Route::get('location', function () {
-    return Storage::get('location.json');
+    return Storage::get('location2.json');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

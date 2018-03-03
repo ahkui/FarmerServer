@@ -45,7 +45,7 @@ function initMarker() {
   if (map != null) {
     var markers = locations.map(function(location, index) {
       return new google.maps.Marker({
-        position: { lat: parseFloat(location.latitude), lng: parseFloat(location.longitude) },
+        position: { lat: parseFloat(location.geometry.location.lat), lng: parseFloat(location.geometry.location.lng) },
         label: "" + index + ""
       });
     });

@@ -60,6 +60,7 @@ class GenerateLocationJson extends Command
                 $start += 1;
             }
             Storage::append('location2.json', ']','public');
+            Storage::setVisibility('location2.json', 'public')
         }
     }
 }

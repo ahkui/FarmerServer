@@ -44,9 +44,9 @@ class GenerateLocationJson extends Command
         // Storage::put('location.json', $data);
         if (FarmPlace::count() > 0) {
             ini_set('memory_limit', '-1');
-            Storage::put('location2.json', '[');
+            Storage::put('location2.json', '[','public');
             $data = FarmPlace::select('geometry')->skip(0)->take(1)->get()->first();
-            Storage::append('location2.json', $data->toJson());
+            Storage::append('location2.json', $data->toJson(),'public');
             $count = 1;
             $start = 0;
             $step = 10000;
@@ -55,11 +55,11 @@ class GenerateLocationJson extends Command
                 $data = FarmPlace::select('geometry')->skip(1 + ($start * $step))->take($step)->get();
                 $count = $data->count();
                 if ($count > 0) {
-                    Storage::append('location2.json', ','.substr($data->toJson(), 1, -1));
+                    Storage::append('location2.json', ','.substr($data->toJson(), 1, -1),'public');
                 }
                 $start += 1;
             }
-            Storage::append('location2.json', ']');
+            Storage::append('location2.json', ']','public');
         }
     }
 }

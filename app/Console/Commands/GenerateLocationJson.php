@@ -40,13 +40,11 @@ class GenerateLocationJson extends Command
      */
     public function handle()
     {
-        // $data = ConvertedAddressData::get();
-        // Storage::put('location.json', $data);
         if (FarmPlace::count() > 0) {
             ini_set('memory_limit', '-1');
-            Storage::put('location2.json', '[','public');
+            Storage::disk('public')->put('location.json', '[');
             $data = FarmPlace::select('geometry')->skip(0)->take(1)->get()->first();
-            Storage::append('location2.json', $data->toJson(),'public');
+            Storage::disk('public')->append('location.json', $data->toJson());
             $count = 1;
             $start = 0;
             $step = 10000;
@@ -55,12 +53,11 @@ class GenerateLocationJson extends Command
                 $data = FarmPlace::select('geometry')->skip(1 + ($start * $step))->take($step)->get();
                 $count = $data->count();
                 if ($count > 0) {
-                    Storage::append('location2.json', ','.substr($data->toJson(), 1, -1),'public');
+                    Storage::disk('public')->append('location.json', ','.substr($data->toJson(), 1, -1));
                 }
                 $start += 1;
             }
-            Storage::append('location2.json', ']','public');
-            Storage::setVisibility('location2.json', 'public')
+            Storage::disk('public')->append('location.json', ']');
         }
     }
 }

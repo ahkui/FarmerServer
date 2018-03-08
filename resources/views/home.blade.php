@@ -4,7 +4,7 @@
 var locations = [];
 var map = null
 
-loadJSON('{{asset('storage/location2.json')}}',
+loadJSON('{{asset('storage/location.json')}}',
   function(data) {
     locations = data;
     initMarker();

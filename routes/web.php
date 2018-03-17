@@ -60,6 +60,5 @@ Route::get('now', function () {
     return Carbon\Carbon::now();
 });
 
-
-Route::get('search','GeometryController@search');
-Route::post('search','GeometryController@search');
+Route::get('search', 'GeometryController@search');
+Route::post('search', 'GeometryController@search');

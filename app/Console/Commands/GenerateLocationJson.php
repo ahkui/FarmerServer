@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\ConvertedAddressData;
 use App\FarmPlace;
 use Illuminate\Console\Command;
 use Storage;

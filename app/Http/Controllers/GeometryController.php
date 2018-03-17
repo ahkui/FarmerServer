@@ -19,6 +19,7 @@ class GeometryController extends Controller
         $north = floatval(request()->input('north'));
         $south = floatval(request()->input('south'));
         $west = floatval(request()->input('west'));
+
         return FarmPlace::where('location', 'geoWithin', [
             '$geometry' => [
                 'type'        => 'Polygon',

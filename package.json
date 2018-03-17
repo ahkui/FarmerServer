@@ -22,6 +22,8 @@
     },
     "dependencies": {
         "@reactivex/rxjs": "^5.5.7",
+        "load-google-maps-api": "^1.2.0",
+        "node-js-marker-clusterer": "^1.0.0",
         "rx-dom": "^7.0.3",
         "rxjs": "^5.5.7"
     }

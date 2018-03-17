@@ -7,3 +7,10 @@
 
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
+
+#map{
+    position: fixed !important;
+    left:0;
+    right: 0;
+    bottom: 0;
+}

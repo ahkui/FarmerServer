@@ -37,24 +37,29 @@ Route::get('location', function () {
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
-    use App\OriginalAddressData;
 
-    Route::get('now', function () {
-        dump(
-        OriginalAddressData::whereNull('is_converted')->get()
-    );
-        dump(
-        ConvertedAddressData::where('location', 'near', [
-            '$geometry' => [
-                'type'        => 'Point',
-                'coordinates' => [
-                        121.5063464,
-                        25.02963,
-                ],
+use App\OriginalAddressData;
+
+Route::get('now', function () {
+    dump(
+    OriginalAddressData::whereNull('is_converted')->get()
+);
+    dump(
+    ConvertedAddressData::where('location', 'near', [
+        '$geometry' => [
+            'type'        => 'Point',
+            'coordinates' => [
+                    121.5063464,
+                    25.02963,
             ],
-            '$maxDistance' => 1000,
-        ])->get()
-    );
+        ],
+        '$maxDistance' => 1000,
+    ])->get()
+);
 
-        return Carbon\Carbon::now();
-    });
+    return Carbon\Carbon::now();
+});
+
+
+Route::get('search','GeometryController@search');
+Route::post('search','GeometryController@search');

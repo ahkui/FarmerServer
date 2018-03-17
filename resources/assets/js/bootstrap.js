@@ -1,4 +1,3 @@
-
 window._ = require('lodash');
 
 /**
@@ -9,8 +8,8 @@ window._ = require('lodash');
 
 try {
     window.$ = window.jQuery = require('jquery');
-    window.Popper = require('popper.js').default;  
-    require('bootstrap');  
+    window.Popper = require('popper.js').default;
+    require('bootstrap');
 } catch (e) {}
 
 /**
@@ -53,5 +52,7 @@ if (token) {
 // });
 
 window.Rx = require('rxjs/Rx');
-window.Rx = require('rx-dom');
-
+require('rx-dom');
+require('@reactivex/rxjs');
+Rx.DOM.ready().subscribe(() => {
+});

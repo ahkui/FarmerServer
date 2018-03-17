@@ -9994,3 +9994,10 @@ a.text-dark:focus {
   }
 }
 
+#map {
+  position: fixed !important;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\ConvertedAddressData;
+use App\FarmPlace;
 use Illuminate\Http\Request;
 
 class GeometryController extends Controller
@@ -14,13 +14,12 @@ class GeometryController extends Controller
      */
     public function search()
     {
-        ini_set('memory_limit', '16G');
+        ini_set('memory_limit', '-1');
         $east = floatval(request()->input('east'));
         $north = floatval(request()->input('north'));
         $south = floatval(request()->input('south'));
         $west = floatval(request()->input('west'));
-
-        return ConvertedAddressData::where('location', 'geoWithin', [
+        return FarmPlace::where('location', 'geoWithin', [
             '$geometry' => [
                 'type'        => 'Polygon',
                 'coordinates' => [

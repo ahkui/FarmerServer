@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Console\Commands;
+
 use App\FarmPlace;
 use Illuminate\Console\Command;
 
@@ -37,9 +38,9 @@ class ConvertGeometry extends Command
      */
     public function handle()
     {
-        while($item = FarmPlace::whereNull('location')->first()){
+        while ($item = FarmPlace::whereNull('location')->first()) {
             $item->location = ['type'=>'Point', 'coordinates'=>[$item->geometry['location']['lng'], $item->geometry['location']['lat']]];
             $item->save();
-        };
+        }
     }
 }

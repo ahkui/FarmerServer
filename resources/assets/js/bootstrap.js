@@ -51,3 +51,7 @@ if (token) {
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
+
+var Rx = require('rxjs/Rx');
+
+Rx.Observable.of(1,2,3); // etc

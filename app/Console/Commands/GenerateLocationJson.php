@@ -55,8 +55,9 @@ class GenerateLocationJson extends Command
                     Storage::disk('public')->append('location.json', ','.substr($data->toJson(), 1, -1));
                 }
                 $start += 1;
-                if ($start == 1) 
+                if ($start == 1) {
                     break;
+                }
             }
             Storage::disk('public')->append('location.json', ']');
         }

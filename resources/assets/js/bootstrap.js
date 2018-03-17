@@ -52,6 +52,6 @@ if (token) {
 //     key: 'your-pusher-key'
 // });
 
-var Rx = require('rxjs/Rx');
+window.Rx = require('rxjs/Rx');
+window.Rx = require('rx-dom');
 
-Rx.Observable.of(1,2,3); // etc

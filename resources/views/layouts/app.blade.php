@@ -12,6 +12,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMC2qdXdScCtK9Lzz2zuBMkaGMRtWOQ4k&callback=initMap"></script>
 </head>
 
 <body>

@@ -21,6 +21,8 @@
         "vue-template-compiler": "^2.5.16"
     },
     "dependencies": {
+        "@reactivex/rxjs": "^5.5.7",
+        "rx-dom": "^7.0.3",
         "rxjs": "^5.5.7"
     }
 }

@@ -41,7 +41,7 @@ class ConvertGeometry extends Command
         while ($item = FarmPlace::whereNull('location')->first()) {
             $item->location = ['type'=>'Point', 'coordinates'=>[$item->geometry['location']['lng'], $item->geometry['location']['lat']]];
             $item->save();
-            dump(FarmPlace::whereNull('location')->count(),$item->id);
+            dump(FarmPlace::whereNull('location')->count(), $item->id);
         }
     }
 }

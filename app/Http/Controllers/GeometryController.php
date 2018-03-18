@@ -49,6 +49,6 @@ class GeometryController extends Controller
                     ],
                 ],
             ],
-        ])->get();
+        ])->get(['name','location']);
     }
 }

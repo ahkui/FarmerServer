@@ -4,7 +4,6 @@ namespace App\Console;
 
 use App\Jobs\ConvertAddressToCoordinates;
 use App\Jobs\ResetGoogleMapsApiCount;
-use App\Jobs\QueueConvertGeo;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 

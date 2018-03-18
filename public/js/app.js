@@ -111132,6 +111132,7 @@ window.clearMarker = function () {
     if (window.markerCluster) if (window.markers != null) window.markerCluster.removeMarkers(window.markers);
 };
 window.generateMarker = function (location_data) {
+    if (window.markers != null) window.markerCluster.removeMarkers(window.markers);
     window.markers = location_data.map(function (location, index) {
         return new google.maps.Marker({
             position: { lat: parseFloat(location.location.coordinates[1]), lng: parseFloat(location.location.coordinates[0]) },
@@ -111149,6 +111150,7 @@ window.map_ready = function () {};
 Rx.DOM.click(document.getElementsByClassName("navbar-toggler-icon")).subscribe(windowResize);
 Rx.DOM.resize(window).subscribe(windowResize);
 Rx.DOM.ready().subscribe(function () {
+    console.log("dom ready");
     window.GoogleMaps = __webpack_require__(950);
     window.MarkerClusterer = __webpack_require__(951);
     window.initMap();
@@ -111162,6 +111164,8 @@ window.initMap = function () {
         });
         window.cancel = null;
         window.CancelToken = axios.CancelToken;
+        map.addListener('zoom_changed', clearMarker);
+        map.addListener('dragstart', clearMarker);
         map.addListener('idle', function () {
             if (window.cancel != null) window.cancel();
             axios.post('search', map.getBounds().toJSON(), {
@@ -111173,8 +111177,6 @@ window.initMap = function () {
                 generateMarker(res.data);
             }).catch(function (error) {});
         });
-        map.addListener('zoom_changed', clearMarker);
-        map.addListener('dragstart', clearMarker);
         windowResize();
     });
 };

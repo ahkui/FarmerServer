@@ -21,6 +21,8 @@
         "vue-template-compiler": "^2.5.16"
     },
     "dependencies": {
+        "@fortawesome/fontawesome": "^1.1.4",
+        "@fortawesome/vue-fontawesome": "0.0.22",
         "@reactivex/rxjs": "^5.5.7",
         "load-google-maps-api": "^1.2.0",
         "node-js-marker-clusterer": "^1.0.0",

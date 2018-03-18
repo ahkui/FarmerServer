@@ -4,7 +4,8 @@ window.markerCluster = null;
 window.clearMarker = () => {
     if(window.markerCluster)
         if (window.markers != null)
-            window.markerCluster.removeMarkers(window.markers)
+            window.markerCluster.clearMarkers()
+            // window.markerCluster.removeMarkers(window.markers)
 };
 window.generateMarker = (location_data) => {
     if (window.markers != null)

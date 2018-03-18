@@ -111129,7 +111129,8 @@ window.map = null;
 window.markers = null;
 window.markerCluster = null;
 window.clearMarker = function () {
-    if (window.markerCluster) if (window.markers != null) window.markerCluster.removeMarkers(window.markers);
+    if (window.markerCluster) if (window.markers != null) window.markerCluster.clearMarkers();
+    // window.markerCluster.removeMarkers(window.markers)
 };
 window.generateMarker = function (location_data) {
     if (window.markers != null) window.markerCluster.removeMarkers(window.markers);

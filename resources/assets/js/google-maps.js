@@ -7,6 +7,8 @@ window.clearMarker = () => {
             window.markerCluster.removeMarkers(window.markers)
 };
 window.generateMarker = (location_data) => {
+    if (window.markers != null)
+            window.markerCluster.removeMarkers(window.markers)
     window.markers = location_data.map(function(location, index) {
         return new google.maps.Marker({
             position: { lat: parseFloat(location.location.coordinates[1]), lng: parseFloat(location.location.coordinates[0]) },
@@ -24,6 +26,7 @@ window.map_ready = () => {}
 Rx.DOM.click(document.getElementsByClassName("navbar-toggler-icon")).subscribe(windowResize);
 Rx.DOM.resize(window).subscribe(windowResize);
 Rx.DOM.ready().subscribe(() => {
+    console.log("dom ready");
     window.GoogleMaps = require('load-google-maps-api')
     window.MarkerClusterer = require('node-js-marker-clusterer');
     window.initMap();
@@ -37,6 +40,8 @@ window.initMap = () => {
         })
         window.cancel = null;
         window.CancelToken = axios.CancelToken;
+        map.addListener('zoom_changed', clearMarker);
+        map.addListener('dragstart', clearMarker);
         map.addListener('idle', () => {
             if (window.cancel != null)
                 window.cancel();
@@ -49,8 +54,6 @@ window.initMap = () => {
                 generateMarker(res.data)
             }).catch((error) => {});
         });
-        map.addListener('zoom_changed', clearMarker);
-        map.addListener('dragstart', clearMarker);
         windowResize();
     });
 };

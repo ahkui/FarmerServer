@@ -15,6 +15,7 @@ class GeometryController extends Controller
     public function search()
     {
         ini_set('memory_limit', '-1');
+        set_time_limit(0);
         $east = floatval(request()->input('east'));
         $north = floatval(request()->input('north'));
         $south = floatval(request()->input('south'));

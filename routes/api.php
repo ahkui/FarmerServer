@@ -32,22 +32,6 @@ Route::post('deploy', function () {
 });
 //*********Don't Touch!!!!**********//
 
-// Route::post('{name}', function () {
-//     return \App\Book::get();
-
-//     return request()->name;
-// });
-// Route::get('{name}', function () {
-//     \App\User::firstOrCreate([
-//         'name' => 'ahkui',
-//         'email'=> 'ahkui@outlook.com',
-//     ]);
-
-//     return \App\User::get();
-
-//     return request()->name;
-// });
-
 Route::get('path', function () {
     $lat = request()->lat;
     $long = request()->long;
@@ -75,9 +59,7 @@ Route::get('path', function () {
 
 Route::get('deletePlace', function () {
     $id = request()->id;
-
-Route::get('filter/tags','GeometryController@tags');
-Route::post('filter/tags','GeometryController@tags');    return FarmPlace::where('place_id', $id)->delete();
+    return FarmPlace::where('place_id', $id)->delete();
 });
 
 Route::get('editPlace', function () {
@@ -104,3 +86,7 @@ Route::get('editPlace', function () {
 
     return FarmPlace::where('place_id', $id)->get()->first();
 });
+
+
+Route::get('filter/tags','GeometryController@tags');
+Route::post('filter/tags','GeometryController@tags');

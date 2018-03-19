@@ -16,7 +16,8 @@ require('./google-maps');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue'));
+import FilterTagsInput from './components/FilterTagsInput.vue'
+Vue.component('filtertagsinput', FilterTagsInput);
 
 
 
@@ -24,6 +25,7 @@ Rx.DOM.ready().subscribe(() => {
     const app = new Vue({
         el: '#app'
     });
+    require('./ready')
 });
 
 var isShowFilterBox = true;

@@ -63,3 +63,5 @@ import brands from '@fortawesome/fontawesome-free-brands'
 fontawesome.library.add(regular)
 fontawesome.library.add(solid)
 fontawesome.library.add(brands)
+
+window.Awesomplete = require('./awesomplete')

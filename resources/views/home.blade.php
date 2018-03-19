@@ -6,5 +6,9 @@
 <button class="rounded-circle" type="button" onclick="window.showFilterBox()" style="transform: translateX(-50%);position: fixed;left:60%;right: 1rem;bottom: 1rem;z-index: 9999;">
     <i class="fas fa-search"></i>
 </button>
-<div id="filter-box"><div class="rounded"></div></div>
+<div id="filter-box">
+    <div class="rounded">
+        <filtertagsinput />
+    </div>
+</div>
 @endsection

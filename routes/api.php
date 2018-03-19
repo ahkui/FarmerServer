@@ -71,24 +71,23 @@ Route::get('path', function () {
                 ],
             ],
             '$maxDistance' => floatval($meter),
-        ])->whereIn('types', $tags)->where('status',1)->get(['name', 'location', 'types','place_id']);
+        ])->whereIn('types', $tags)->where('status', 1)->get(['name', 'location', 'types', 'place_id']);
 });
 
-Route::get('deletePlace',function(){
+Route::get('deletePlace', function () {
     $id = request()->id;
-    return FarmPlace::where('place_id',$id)->delete();
+
+    return FarmPlace::where('place_id', $id)->delete();
 });
 
-Route::get('editPlace',function(){
+Route::get('editPlace', function () {
     $id = request()->id;
-    $editData = FarmPlace::where('place_id',$id)->get(['name','location','types','status'])->first();
+    $editData = FarmPlace::where('place_id', $id)->get(['name', 'location', 'types', 'status'])->first();
 
-    if(request()->name != null)
-    {
+    if (request()->name != null) {
         $editData->name = request()->name;
     }
-    if(request()->lat != null)
-    {
+    if (request()->lat != null) {
         $editData->location->coordinates[0] = request()->lat;
     }
     if(request()->long != null)
@@ -99,10 +98,10 @@ Route::get('editPlace',function(){
         $typess = request()->tags;
         $editData->types = explode(',', $typess);
     }
-    if(request()->status != null)
-    {
+    if (request()->status != null) {
         $editData->status = request()->status;
     }
     $editData->save();
-    return FarmPlace::where('place_id',$id)->get()->first();
+
+    return FarmPlace::where('place_id', $id)->get()->first();
 });

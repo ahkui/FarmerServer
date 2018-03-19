@@ -51,7 +51,7 @@ Route::post('deploy', function () {
 Route::get('path', function () {
     $lat = request()->lat;
     $long = request()->long;
-    $meter = 5;
+    $meter = 100;
     if (request()->tags != null) {
         $typess = request()->tags;
         $tags = explode(',', $typess);
@@ -70,10 +70,37 @@ Route::get('path', function () {
                 ],
             ],
             '$maxDistance' => floatval($meter),
-        ])->whereIn('types', $tags)->get(['name', 'location', 'types']);
+        ])->whereIn('types', $tags)->where('status', 1)->get(['name', 'location', 'types', 'place_id']);
 });
 
+Route::get('deletePlace', function () {
+    $id = request()->id;
 
-    
 Route::get('filter/tags','GeometryController@tags');
-Route::post('filter/tags','GeometryController@tags');
+Route::post('filter/tags','GeometryController@tags');    return FarmPlace::where('place_id', $id)->delete();
+});
+
+Route::get('editPlace', function () {
+    $id = request()->id;
+    $editData = FarmPlace::where('place_id', $id)->get(['name', 'location', 'types', 'status'])->first();
+
+    if (request()->name != null) {
+        $editData->name = request()->name;
+    }
+    if (request()->lat != null) {
+        $editData->location->coordinates[0] = request()->lat;
+    }
+    if (request()->long != null) {
+        $editData->location->coordinates[1] = request()->long;
+    }
+    if (request()->tags != null) {
+        $typess = request()->tags;
+        $editData->types = explode(',', $typess);
+    }
+    if (request()->status != null) {
+        $editData->status = request()->status;
+    }
+    $editData->save();
+
+    return FarmPlace::where('place_id', $id)->get()->first();
+});

@@ -90,8 +90,7 @@ Route::get('editPlace', function () {
     if (request()->lat != null) {
         $editData->location->coordinates[0] = request()->lat;
     }
-    if(request()->long != null)
-    {
+    if (request()->long != null) {
         $editData->location->coordinates[1] = request()->long;
     }
     if (request()->tags != null) {

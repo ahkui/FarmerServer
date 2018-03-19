@@ -25,18 +25,18 @@ class GeometryController extends Controller
             '$geometry' => [
                 'type'        => 'Polygon',
                 'coordinates' => [[
-                    [$east,$north],
-                    [$west,$north],
-                    [$west,$south],
-                    [$east,$south],
-                    [$east,$north],
+                    [$east, $north],
+                    [$west, $north],
+                    [$west, $south],
+                    [$east, $south],
+                    [$east, $north],
                 ]],
             ],
         ])->get(['name', 'location', 'types']);
     }
 
-    public function tags(){
-
+    public function tags()
+    {
         $data = collect([
             'accounting',
             'airport',
@@ -179,15 +179,16 @@ class GeometryController extends Controller
             'grocery_or_supermarket',
             'health',
             'place_of_worship',
-            'administrative_area_level_3'
+            'administrative_area_level_3',
         ]);
 
         $tag = request()->input('tag');
         if ($tag != null) {
             return $data->filter(function ($value, $key) use ($tag) {
-                return strpos($value,$tag)!== false;
+                return strpos($value, $tag) !== false;
             })->values();
         }
+
         return $data;
     }
 }

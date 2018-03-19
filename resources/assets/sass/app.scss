@@ -1,4 +1,3 @@
-
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
@@ -8,9 +7,26 @@
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
 
-#map{
+#map {
     position: fixed !important;
-    left:0;
+    left: 0;
     right: 0;
     bottom: 0;
+}
+
+#filter-box {
+    height: 150px;
+    width: 100%;
+    position: fixed;
+    bottom: 5rem;
+    left: 0;
+    right: 0;
+    z-index: 9998;
+    transition: all 0.5s ease;
+    >div {
+        height:100%;
+        max-width: 300px;
+        margin: 0 auto;
+        background-color: rgba(0,0,0,0.5);
+    }
 }

@@ -7,21 +7,30 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-import fontawesome from '@fortawesome/fontawesome';
+
+require('./google-maps');
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+// Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 
-
-require('./google-maps');
 
 Rx.DOM.ready().subscribe(() => {
     const app = new Vue({
         el: '#app'
     });
 });
+
+var isShowFilterBox = true;
+window.showFilterBox = ()=>{
+    if(isShowFilterBox)
+        $('#filter-box').css('bottom','-40rem');
+    else
+        $('#filter-box').css('bottom','5rem');
+    isShowFilterBox = !isShowFilterBox;
+};

@@ -57,8 +57,7 @@ Route::get('path', function () {
         $typess = request()->tags;
         $tags = explode(',', $typess);
     }
-    if(request()->distance != null)
-    {
+    if (request()->distance != null) {
         $meter = request()->distance;
     }
 

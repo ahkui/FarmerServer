@@ -1,19 +1,23 @@
 <template>
-    <div style="padding:0.5rem">
-        <Multiselect 
-        v-model="value" 
-        :options="options" 
-        :loading="isLoading"
-        :multiple="true" 
-        :searchable="true" 
-        :internal-search="false" 
-        :hide-selected="true" 
-        :close-on-select="false" 
-        :clear-on-select="true" 
-        :show-no-results="false" 
-        :max-height="600" 
-        @search-change="asyncFind" 
-        placeholder="Pick some" />
+    <div id="filter-box">
+        <div class="rounded">
+            <div style="padding:0.5rem">
+                <Multiselect 
+                v-model="value" 
+                :options="options" 
+                :loading="isLoading"
+                :multiple="true" 
+                :searchable="true" 
+                :internal-search="false" 
+                :hide-selected="true" 
+                :close-on-select="false" 
+                :clear-on-select="true" 
+                :show-no-results="false" 
+                :max-height="600" 
+                @search-change="asyncFind" 
+                placeholder="Pick some" />
+            </div>
+        </div>
     </div>
 </template>
 <script>

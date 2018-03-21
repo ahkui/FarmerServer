@@ -16,8 +16,8 @@ require('./google-maps');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import FilterTagsInput from './components/FilterTagsInput.vue'
-Vue.component('filtertagsinput', FilterTagsInput);
+import PointFilter from './components/PointFilter.vue'
+Vue.component('pointfilter', PointFilter);
 
 
 

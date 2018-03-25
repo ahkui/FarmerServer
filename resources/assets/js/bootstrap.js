@@ -53,7 +53,6 @@ if (token) {
 
 window.Rx = require('rxjs/Rx');
 require('rx-dom');
-require('@reactivex/rxjs');
 
 import fontawesome from '@fortawesome/fontawesome'
 import regular from '@fortawesome/fontawesome-free-regular'

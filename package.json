@@ -27,9 +27,7 @@
         "@fortawesome/fontawesome-free-regular": "^5.0.8",
         "@fortawesome/fontawesome-free-solid": "^5.0.8",
         "@fortawesome/vue-fontawesome": "0.0.22",
-        "@reactivex/rxjs": "^5.5.7",
         "array-subtract": "^2.0.0",
-        "font-awesome": "^4.7.0",
         "load-google-maps-api": "^1.2.0",
         "node-js-marker-clusterer": "^1.0.0"
     },
